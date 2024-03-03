@@ -21,12 +21,12 @@ TBA
 
 - [x] readme
 - [x] features roadmap
+- [x] editorconfig
 - [ ] better readme
 - [ ] logging
 - [ ] license
 - [ ] pipeline
 - [ ] exe release
-- [ ] editorconfig
 - [ ] unit tests
 - [ ] cool labels (version, build, license, buymecoffe)
 
