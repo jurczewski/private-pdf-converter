@@ -1,4 +1,5 @@
 ﻿using Cocona;
+using PrivatePdfConverter;
 
 var app = CoconaLiteApp.Create();
 
