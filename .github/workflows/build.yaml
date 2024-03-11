@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  build-api:
+  build-and-test:
     runs-on: ubuntu-latest
     env:
       PROJECT_DIR: ./src
