@@ -22,10 +22,10 @@ TBA
 - [x] readme
 - [x] features roadmap
 - [x] editorconfig
-- [ ] better readme
-- [ ] logging
+- [x] logging
 - [ ] license
-- [ ] pipeline
+- [x] pipeline
+- [ ] better readme
 - [ ] exe release
 - [ ] unit tests
 - [ ] cool labels (version, build, license, buymecoffe)
