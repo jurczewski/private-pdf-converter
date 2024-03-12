@@ -23,7 +23,7 @@ TBA
 - [x] features roadmap
 - [x] editorconfig
 - [x] logging
-- [ ] license
+- [x] license
 - [x] pipeline
 - [ ] better readme
 - [ ] exe release
