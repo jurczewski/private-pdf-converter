@@ -6,7 +6,7 @@ TBA
 
 ## Features roadmap
 
-- [ ] convert dir to pdf
+- [x] convert dir to pdf
 - [ ] create a PDF file from a single image
 - [ ] convert PDF to multiple images
 - [ ] multiple image extensions support
