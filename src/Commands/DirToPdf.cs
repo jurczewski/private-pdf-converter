@@ -12,17 +12,17 @@ public static class DirToPdf
         using var images = new MagickImageCollection();
         files.ForEach(x => images.Add(new MagickImage(x)));
 
-        SaveAsPdf(path, output, images);
+        SaveAsPdf(path, images, output);
     }
 
-    private static void SaveAsPdf(string path, string? output, MagickImageCollection images)
+    private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
     {
-        var outputFileName = output ?? "output"; // make default output file name
+        var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
 
         // check if filename already has .pdf extension and add .pdf at the end if
         if (!outputFileName.EndsWith(".pdf"))
         {
-            outputFileName = $"{outputFileName}.pdf"; // use += to append .pdf
+            outputFileName += ".pdf";
         }
 
         images.Write($"{path}/{outputFileName}");
