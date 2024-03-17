@@ -32,7 +32,10 @@ TBA
 
 # Arguments
 
-TBA
+| Argument | Description                       | Options                    |
+| -------- | --------------------------------- | -------------------------- |
+| `pdf`    | Converts directory content to pdf | `path` - dir to convert to |
+|          |                                   | `output` - pdf output name |
 
 # Development
 
