@@ -43,4 +43,4 @@ TBA
 
 ## Dependencies
 
-TBA
+Based on micro-framework [Cocona](https://github.com/mayuki/Cocona).
