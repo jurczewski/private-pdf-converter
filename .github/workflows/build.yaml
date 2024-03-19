@@ -10,7 +10,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     env:
-      PROJECT_DIR: ./src
+      PROJECT_DIR: ./src/PrivatePdfConverter
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
