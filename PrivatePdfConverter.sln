@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivatePdfConverter", "src\PrivatePdfConverter\PrivatePdfConverter.csproj", "{DFFB0E89-1E25-474B-87CD-BC46C11BF72D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49ACDD3F-0AFE-4479-8B25-34077A1FDF76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{070EADA0-D8F8-41A1-B396-2E6E928276E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivatePdfConverter.UnitTests", "tests\PrivatePdfConverter.UnitTests\PrivatePdfConverter.UnitTests.csproj", "{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,13 @@ Global
 		{DFFB0E89-1E25-474B-87CD-BC46C11BF72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFFB0E89-1E25-474B-87CD-BC46C11BF72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFFB0E89-1E25-474B-87CD-BC46C11BF72D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFFB0E89-1E25-474B-87CD-BC46C11BF72D} = {49ACDD3F-0AFE-4479-8B25-34077A1FDF76}
+		{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32} = {070EADA0-D8F8-41A1-B396-2E6E928276E0}
 	EndGlobalSection
 EndGlobal
