@@ -32,11 +32,21 @@ public static class DirToPdf
 
     private static List<string> LoadFilesFromPath(string path)
     {
-        var files = Directory.GetFiles(path, "?.png").ToList();
+        var files = Directory.GetFiles(path);
+        var supportedFiles = files.Where(x => IsImage(Path.GetExtension(x))).ToList();
 
-        Log.Logger.Information("Read {Count} files from '{Path}'", files.Count, path);
-        files.ForEach(x => Log.Logger.Information("File name: {FileName}", Path.GetFileName(x)));
+        Log.Logger.Information("Read {Count} files from '{Path}'", supportedFiles.Count, path);
+        supportedFiles.ForEach(x => Log.Logger.Information("File name: {FileName}", Path.GetFileName(x)));
 
-        return files;
+        return supportedFiles;
+    }
+
+    private static bool IsImage(string extension)
+    {
+        var validExtensions = new[]
+        {
+            "jpg", "jpeg", "bmp", "gif", "png", "tif", "tiff", "webp"
+        };
+        return validExtensions.Contains(extension.ToLower()[1..]);
     }
 }

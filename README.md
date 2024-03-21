@@ -9,7 +9,7 @@ TBA
 - [x] convert dir to pdf
 - [ ] create a PDF file from a single image
 - [ ] convert PDF to multiple images
-- [ ] multiple image extensions support
+- [x] multiple image extensions support
 - [ ] merge pdf
 - [ ] split pdf
 - [ ] encrypt pdf with password
