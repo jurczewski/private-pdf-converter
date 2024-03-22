@@ -4,6 +4,17 @@
 
 TBA
 
+### Supported file extensions
+
+- .jpg
+- .jpeg
+- .bmp
+- .gif
+- .png
+- .tif
+- .tiff
+- .webp
+
 ## Features roadmap
 
 - [x] convert dir to pdf
