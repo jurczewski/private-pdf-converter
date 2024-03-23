@@ -4,7 +4,7 @@ using PrivatePdfConverter.Commands;
 
 var app = CoconaLiteApp.Create();
 
-app.AddCommand("pdf", DirToPdf.ConvertDirectoryToOnePdf);
+app.AddCommand("dir", DirToPdf.ConvertDirectoryToOnePdf).WithDescription("Converts directory content to pdf file.");
 
 Logger.Initialize();
 
