@@ -4,6 +4,13 @@
 
 TBA
 
+# Arguments
+
+| Argument | Description                             | Options                    |
+| -------- | --------------------------------------- | -------------------------- |
+| `dir`    | Converts directory content to pdf file. | `path` - dir to convert to |
+|          |                                         | `output` - pdf output name |
+
 ### Supported file extensions
 
 - .jpg
@@ -17,12 +24,12 @@ TBA
 
 ## Features roadmap
 
-- [x] convert dir to pdf
-- [ ] create a PDF file from a single image
-- [ ] convert PDF to multiple images
+- [x] convert dir to pdf (`dir`)
+- [ ] create a PDF file from a single image (`pdf`)
+- [ ] convert PDF to multiple images (`img`)
 - [x] multiple image extensions support
-- [ ] merge pdf
-- [ ] split pdf
+- [ ] merge pdf (`merge`)
+- [ ] split pdf (`split`)
 - [ ] encrypt pdf with password
 - [ ] add watermark/logo to your pdf
 - [ ] better TUI (menu)
@@ -36,17 +43,11 @@ TBA
 - [x] logging
 - [x] license
 - [x] pipeline
-- [ ] better readme
+- [x] better readme
 - [ ] exe release
 - [ ] unit tests
 - [ ] cool labels (version, build, license, buymecoffe)
-
-# Arguments
-
-| Argument | Description                       | Options                    |
-| -------- | --------------------------------- | -------------------------- |
-| `pdf`    | Converts directory content to pdf | `path` - dir to convert to |
-|          |                                   | `output` - pdf output name |
+- [ ] winget/chocolatey
 
 # Development
 
