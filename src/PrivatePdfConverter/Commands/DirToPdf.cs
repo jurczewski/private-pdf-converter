@@ -7,10 +7,10 @@ public static class DirToPdf
 {
     public static void ConvertDirectoryToOnePdf(string path, string? output)
     {
-        var files = LoadFilesFromPath(path);
+        var filesPaths = LoadFilePathsFromDirectory(path);
 
         using var images = new MagickImageCollection();
-        files.ForEach(x => images.Add(new MagickImage(x)));
+        filesPaths.ForEach(x => images.Add(new MagickImage(x)));
 
         SaveAsPdf(path, images, output);
     }
@@ -30,7 +30,7 @@ public static class DirToPdf
         Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, $"{path}/{outputFileName}");
     }
 
-    private static List<string> LoadFilesFromPath(string path)
+    private static List<string> LoadFilePathsFromDirectory(string path)
     {
         var files = Directory.GetFiles(path);
         var supportedFiles = files.Where(x => IsImage(Path.GetExtension(x))).ToList();
