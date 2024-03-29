@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Cocona.Lite" Version="2.2.0" />
+    <PackageReference Include="itext7" Version="8.0.3" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.3" />
     <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="13.6.0" />
     <PackageReference Include="Serilog" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
