@@ -6,10 +6,10 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 
 # Arguments
 
-| Argument | Description                             | Options                    |
-| -------- | --------------------------------------- | -------------------------- |
-| `dir`    | Converts directory content to pdf file. | `path` - dir to convert to |
-|          |                                         | `output` - pdf output name |
+| Argument | Description                                              | Options                    |
+| -------- | -------------------------------------------------------- | -------------------------- |
+| `dir`    | Converts all images inside directory to single pdf file. | `path` - path to directory |
+|          | See below supported file extensions.                     | `output` - pdf output name |
 
 ### Supported file extensions
 
@@ -47,6 +47,7 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 - [ ] exe release
 - [ ] unit tests
 - [ ] cool labels (version, build, license, buymecoffe)
+- [ ] auto release from master [LINK](https://github.com/xoofx/dotnet-releaser)
 - [ ] winget/chocolatey
 
 # Development
