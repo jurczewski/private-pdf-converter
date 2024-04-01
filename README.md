@@ -6,10 +6,12 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 
 # Arguments
 
-| Argument | Description                                              | Options                    |
-| -------- | -------------------------------------------------------- | -------------------------- |
-| `dir`    | Converts all images inside directory to single pdf file. | `path` - path to directory |
-|          | See below supported file extensions.                     | `output` - pdf output name |
+| Argument | Description                                               | Options                    |
+| -------- | --------------------------------------------------------- | -------------------------- |
+| `dir`    | Converts all images inside directory to single pdf file.  | `path` - path to directory |
+|          | See below supported file extensions.                      | `output` - pdf output name |
+| `merge`  | Merge all .pdf files inside directory to single pdf file. | `path` - path to directory |
+|          |                                                           | `output` - pdf output name |
 
 ### Supported file extensions
 
@@ -28,7 +30,7 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 - [ ] create a PDF file from a single image (`pdf`)
 - [ ] convert PDF to multiple images (`img`)
 - [x] multiple image extensions support
-- [ ] merge pdf (`merge`)
+- [x] merge pdf (`merge`)
 - [ ] split pdf (`split`)
 - [ ] encrypt pdf with password
 - [ ] add watermark/logo to your pdf
