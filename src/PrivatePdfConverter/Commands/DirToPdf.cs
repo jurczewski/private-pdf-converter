@@ -1,4 +1,5 @@
 using ImageMagick;
+using PrivatePdfConverter.Services;
 using Serilog;
 
 namespace PrivatePdfConverter.Commands;
@@ -7,10 +8,11 @@ public static class DirToPdf
 {
     public static void ConvertDirectoryToOnePdf(string path, string? output)
     {
-        var filesPaths = LoadFilePathsFromDirectory(path);
+        var filesPaths = path.LoadFilePathsFromDirectory();
+        var supportedFiles = filesPaths.Where(x => IsImage(Path.GetExtension(x))).ToList();
 
         using var images = new MagickImageCollection();
-        filesPaths.ForEach(x => images.Add(new MagickImage(x)));
+        supportedFiles.ForEach(x => images.Add(new MagickImage(x)));
 
         SaveAsPdf(path, images, output);
     }
@@ -28,17 +30,6 @@ public static class DirToPdf
         images.Write($"{path}/{outputFileName}");
 
         Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, $"{path}/{outputFileName}");
-    }
-
-    private static List<string> LoadFilePathsFromDirectory(string path)
-    {
-        var files = Directory.GetFiles(path);
-        var supportedFiles = files.Where(x => IsImage(Path.GetExtension(x))).ToList();
-
-        Log.Logger.Information("Read {Count} files from '{Path}'", supportedFiles.Count, path);
-        supportedFiles.ForEach(x => Log.Logger.Information("File name: {FileName}", Path.GetFileName(x)));
-
-        return supportedFiles;
     }
 
     private static bool IsImage(string extension)
