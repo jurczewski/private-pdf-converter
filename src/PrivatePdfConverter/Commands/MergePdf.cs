@@ -1,4 +1,5 @@
 using iText.Kernel.Pdf;
+using PrivatePdfConverter.Services;
 using Serilog;
 
 namespace PrivatePdfConverter.Commands;
@@ -7,19 +8,9 @@ public static class MergePdf
 {
     public static void ConvertDirectoryToOnePdf(string path, string? output)
     {
-        var filesPaths = LoadFilePathsFromDirectory(path);
+        var filesPaths = path.LoadFilePathsFromDirectory("?.pdf");
         var pdfs = filesPaths.Select(x => new PdfDocument(new PdfReader(x))).ToList();
         SaveAsPdf(path, pdfs, output);
-    }
-
-    private static List<string> LoadFilePathsFromDirectory(string path)
-    {
-        var files = Directory.GetFiles(path, "?.pdf").ToList();
-
-        Log.Logger.Information("Read {Count} files from '{Path}'", files.Count, path);
-        files.ForEach(x => Log.Logger.Information("File name: {FileName}", Path.GetFileName(x)));
-
-        return files;
     }
 
     private static void SaveAsPdf(string path, List<PdfDocument> pdfs, string? output)
