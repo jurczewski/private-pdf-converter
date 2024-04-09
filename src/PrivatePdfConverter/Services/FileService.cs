@@ -4,7 +4,7 @@ namespace PrivatePdfConverter.Services;
 
 public static class FileService
 {
-    private static readonly string[] validExtensions =
+    public static IEnumerable<string> ValidExtensions { get; } =
     [
         "jpg", "jpeg", "bmp", "gif", "png", "tif", "tiff", "webp"
     ];
@@ -19,5 +19,5 @@ public static class FileService
         return files;
     }
 
-    public static bool IsImage(this string extension) => validExtensions.Contains(extension.ToLower()[1..]);
+    public static bool IsImage(this string extension) => ValidExtensions.Contains(extension.ToLower()[1..]);
 }
