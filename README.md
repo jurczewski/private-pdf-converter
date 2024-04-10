@@ -12,6 +12,7 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 |          | See below supported file extensions.                      | `output` - pdf output name |
 | `merge`  | Merge all .pdf files inside directory to single pdf file. | `path` - path to directory |
 |          |                                                           | `output` - pdf output name |
+| `ext`    | List all valid image extensions.                          |                            |
 
 ### Supported file extensions
 
@@ -36,6 +37,7 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 - [ ] add watermark/logo to your pdf
 - [ ] better TUI (menu)
 - [ ] set default export dir
+- [x] list all valid image extensions (`ext`)
 
 ### Other
 
