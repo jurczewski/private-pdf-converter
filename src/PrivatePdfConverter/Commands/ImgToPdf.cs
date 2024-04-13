@@ -20,6 +20,11 @@ public static class ImgToPdf
         using var images = new MagickImageCollection();
         images.Add(new MagickImage(path));
 
+        SaveAsPdf(path, images, output);
+    }
+
+    private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
+    {
         var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
 
         // check if filename already has .pdf extension and add .pdf at the end if
