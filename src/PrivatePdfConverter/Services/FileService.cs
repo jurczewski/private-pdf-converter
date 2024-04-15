@@ -9,6 +9,8 @@ public static class FileService
         "jpg", "jpeg", "bmp", "gif", "png", "tif", "tiff", "webp"
     ];
 
+    public static bool IsImage(this string extension) => ValidExtensions.Contains(extension.ToLower()[1..]);
+
     public static IEnumerable<string> LoadFilePathsFromDirectory(this string path, string searchPattern = "*")
     {
         var files = Directory.GetFiles(path, searchPattern).ToList();
@@ -19,5 +21,16 @@ public static class FileService
         return files;
     }
 
-    public static bool IsImage(this string extension) => ValidExtensions.Contains(extension.ToLower()[1..]);
+    public static string PrepareOutputFileName(string? output)
+    {
+        var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
+
+        // check if filename already has .pdf extension, if not add .pdf at the end
+        if (!outputFileName.EndsWith(".pdf"))
+        {
+            outputFileName += ".pdf";
+        }
+
+        return outputFileName;
+    }
 }
