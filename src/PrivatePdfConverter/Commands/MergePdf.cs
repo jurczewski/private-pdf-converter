@@ -15,13 +15,7 @@ public static class MergePdf
 
     private static void SaveAsPdf(string path, List<PdfDocument> pdfs, string? output)
     {
-        var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
-
-        // check if filename already has .pdf extension and add .pdf at the end if
-        if (!outputFileName.EndsWith(".pdf"))
-        {
-            outputFileName += ".pdf";
-        }
+        var outputFileName = output.PrepareOutputFileName();
 
         using var mergedDocument = new PdfDocument(new PdfWriter($"{path}/{outputFileName}"));
         foreach (var pdf in pdfs)

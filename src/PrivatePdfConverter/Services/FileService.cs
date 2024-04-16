@@ -21,7 +21,7 @@ public static class FileService
         return files;
     }
 
-    public static string PrepareOutputFileName(string? output)
+    public static string PrepareOutputFileName(this string? output)
     {
         var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
 
