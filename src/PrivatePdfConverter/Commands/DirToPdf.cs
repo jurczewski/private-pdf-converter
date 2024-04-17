@@ -19,13 +19,7 @@ public static class DirToPdf
 
     private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
     {
-        var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
-
-        // check if filename already has .pdf extension and add .pdf at the end if
-        if (!outputFileName.EndsWith(".pdf"))
-        {
-            outputFileName += ".pdf";
-        }
+        var outputFileName = output.PrepareOutputFileName();
 
         images.Write($"{path}/{outputFileName}");
 
