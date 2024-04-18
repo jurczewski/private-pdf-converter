@@ -11,7 +11,7 @@ public static class ImgToPdf
         if (!Path.GetExtension(path).IsImage())
         {
             Log.Logger.Fatal("File type not supported. Please provide a valid image file");
-            // todo log supported file types
+            ListValidExt.ListValidExtensions();
             return;
         }
 
@@ -25,13 +25,7 @@ public static class ImgToPdf
 
     private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
     {
-        var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
-
-        // check if filename already has .pdf extension and add .pdf at the end if
-        if (!outputFileName.EndsWith(".pdf"))
-        {
-            outputFileName += ".pdf";
-        }
+        var outputFileName = output.PrepareOutputFileName();
 
         images.Write($"{Path.GetDirectoryName(path)}/{outputFileName}");
 
