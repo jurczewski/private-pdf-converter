@@ -13,6 +13,13 @@ public static class EncryptPdf
         var outputFileName = output.PrepareOutputFileName();
         var exportFullPath = $"{path}/{outputFileName}";
 
+        EncryptPdfFile(path, password, outputFileName);
+
+        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, exportFullPath);
+    }
+
+    private static void EncryptPdfFile(string path, string password, string outputFileName)
+    {
         var passwordBytes = Encoding.Default.GetBytes(password);
 
         var pdfReader = new PdfReader(path);
@@ -25,7 +32,5 @@ public static class EncryptPdf
         var pdfWriter = new PdfWriter(new FileStream(outputFileName, FileMode.Create), writerProperties);
         var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
         pdfDocument.Close();
-
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, exportFullPath);
     }
 }
