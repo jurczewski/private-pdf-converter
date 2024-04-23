@@ -6,15 +6,18 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 
 # Arguments
 
-| Argument | Description                                               | Options                    |
-| -------- | --------------------------------------------------------- | -------------------------- |
-| `dir`    | Converts all images inside directory to single pdf file.  | `path` - path to directory |
-|          | See below supported file extensions.                      | `output` - pdf output name |
-| `img`    | Converts single image to single pdf file.                 | `path` - path to directory |
-|          | See below supported file extensions.                      | `output` - pdf output name |
-| `merge`  | Merge all .pdf files inside directory to single pdf file. | `path` - path to directory |
-|          |                                                           | `output` - pdf output name |
-| `ext`    | List all valid image extensions.                          |                            |
+| Argument  | Description                                               | Options                          |
+| --------- | --------------------------------------------------------- | -------------------------------- |
+| `dir`     | Converts all images inside directory to single pdf file.  | `path` - path to directory       |
+|           | See below supported file extensions.                      | `output` - pdf output name       |
+| `img`     | Converts single image to single pdf file.                 | `path` - path to directory       |
+|           | See below supported file extensions.                      | `output` - pdf output name       |
+| `merge`   | Merge all .pdf files inside directory to single pdf file. | `path` - path to directory       |
+|           |                                                           | `output` - pdf output name       |
+| `encrypt` | Encrypt pdf with a password                               | `path` - path to file            |
+|           |                                                           | `password` - encryption password |
+|           |                                                           | `output` - pdf output name       |
+| `ext`     | List all valid image extensions.                          |                                  |
 
 ### Supported file extensions
 
