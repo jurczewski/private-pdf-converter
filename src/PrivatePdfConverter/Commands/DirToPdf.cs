@@ -20,9 +20,10 @@ public static class DirToPdf
     private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
     {
         var outputFileName = output.PrepareOutputFileName();
+        var fileWithPath = path.AddFileToPath(outputFileName);
 
-        images.Write($"{path}/{outputFileName}");
+        images.Write(fileWithPath);
 
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, $"{path}/{outputFileName}");
+        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, fileWithPath);
     }
 }

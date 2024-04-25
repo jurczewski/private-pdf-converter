@@ -17,7 +17,8 @@ public static class MergePdf
     {
         var outputFileName = output.PrepareOutputFileName();
 
-        using var mergedDocument = new PdfDocument(new PdfWriter($"{path}/{outputFileName}"));
+        var fileWithPath = path.AddFileToPath(outputFileName);
+        using var mergedDocument = new PdfDocument(new PdfWriter(fileWithPath));
         foreach (var pdf in pdfs)
         {
             pdf.CopyPagesTo(1, pdf.GetNumberOfPages(), mergedDocument);
@@ -25,6 +26,6 @@ public static class MergePdf
 
         pdfs.ForEach(x => x.Close());
 
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, $"{path}/{outputFileName}");
+        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, fileWithPath);
     }
 }

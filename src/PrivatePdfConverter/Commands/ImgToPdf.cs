@@ -27,8 +27,8 @@ public static class ImgToPdf
     {
         var outputFileName = output.PrepareOutputFileName();
 
-        images.Write($"{Path.GetDirectoryName(path)}/{outputFileName}");
+        images.Write($"{Path.GetDirectoryName(path).AddFileToPath(outputFileName)}");
 
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, $"{path}/{outputFileName}");
+        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, path.AddFileToPath(outputFileName));
     }
 }

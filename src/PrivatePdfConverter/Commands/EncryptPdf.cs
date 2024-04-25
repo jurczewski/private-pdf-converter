@@ -12,7 +12,7 @@ public static class EncryptPdf
         Log.Logger.Information("Read 1 file with name: {FileName}, Full path: '{Path}'", Path.GetFileName(path), path);
 
         var outputFileName = output.PrepareOutputFileName();
-        var exportFullPath = $"{path}/{outputFileName}";
+        var exportFullPath = path.AddFileToPath(outputFileName);
 
         EncryptPdfFile(path, password, outputFileName);
 
