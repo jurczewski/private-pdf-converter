@@ -6,18 +6,19 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 
 # Arguments
 
-| Argument  | Description                                               | Options                          |
-| --------- | --------------------------------------------------------- | -------------------------------- |
-| `dir`     | Converts all images inside directory to single pdf file.  | `path` - path to directory       |
-|           | See below supported file extensions.                      | `output` - pdf output name       |
-| `img`     | Converts single image to single pdf file.                 | `path` - path to directory       |
-|           | See below supported file extensions.                      | `output` - pdf output name       |
-| `merge`   | Merge all .pdf files inside directory to single pdf file. | `path` - path to directory       |
-|           |                                                           | `output` - pdf output name       |
-| `encrypt` | Encrypt pdf with a password                               | `path` - path to file            |
-|           |                                                           | `password` - encryption password |
-|           |                                                           | `output` - pdf output name       |
-| `ext`     | List all valid image extensions.                          |                                  |
+| Argument  | Description                                                     | Options                          | Optional options           |
+| --------- | --------------------------------------------------------------- | -------------------------------- | -------------------------- |
+| `dir`     | Converts all images inside a directory to a single PDF file.    | `path` - path to directory       | `output` - PDF output name |
+|           | See below supported file extensions.                            |                                  |                            |
+| `img`     | Converts a single image to a single PDF file.                   | `path` - path to image           | `output` - PDF output name |
+|           | See below supported file extensions.                            |                                  |                            |
+| `merge`   | Merges all PDF files inside a directory into a single PDF file. | `path` - path to directory       | `output` - PDF output name |
+|           |                                                                 |                                  |                            |
+| `encrypt` | Encrypts PDF with a password.                                   | `path` - path to a PDF file      | `output` - PDF output name |
+|           |                                                                 | `password` - encryption password |                            |
+| `ext`     | Lists all valid image extensions.                               |                                  |                            |
+
+For all commends, default export .pdf file name is `output.pdf`.
 
 ### Supported file extensions
 
