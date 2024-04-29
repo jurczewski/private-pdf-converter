@@ -36,16 +36,16 @@ Type `ext` argument to list all of valid image extensions.
 ## Features roadmap
 
 - [x] convert dir to pdf (`dir`)
-- [ ] create a PDF file from a single image (`pdf`)
-- [x] convert PDF to multiple images (`img`)
+- [x] create a PDF file from a single image (`img`)
 - [x] multiple image extensions support
 - [x] merge pdf (`merge`)
+- [x] encrypt pdf with password (`encrypt`)
+- [x] list all valid image extensions (`ext`)
+- [ ] convert PDF to multiple images (`???`)
 - [ ] split pdf (`split`)
-- [ ] encrypt pdf with password
 - [ ] add watermark/logo to your pdf
 - [ ] better TUI (menu)
 - [ ] set default export dir
-- [x] list all valid image extensions (`ext`)
 
 ### Other
 
