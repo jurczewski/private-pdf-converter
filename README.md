@@ -1,5 +1,7 @@
 # 🔎 PrivatePdfConverter
 
+[![Build](https://github.com/jurczewski/private-pdf-converter/actions/workflows/build.yaml/badge.svg)](https://github.com/jurczewski/private-pdf-converter/actions/workflows/build.yaml)
+
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jurczewski)
 
 ## Description
@@ -71,3 +73,5 @@ TBA
 ## Dependencies
 
 Based on micro-framework [Cocona](https://github.com/mayuki/Cocona).
+
+## License
