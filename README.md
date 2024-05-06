@@ -25,9 +25,9 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 | `img`     | Converts a single image to a single PDF file.                   | `path` - path to image           | `output` - PDF output name |
 |           | See below supported file extensions.                            |                                  |                            |
 | `merge`   | Merges all PDF files inside a directory into a single PDF file. | `path` - path to directory       | `output` - PDF output name |
-|           |                                                                 |                                  |                            |
 | `encrypt` | Encrypts PDF with a password.                                   | `path` - path to a PDF file      | `output` - PDF output name |
 |           |                                                                 | `password` - encryption password |                            |
+|           |                                                                 |                                  |                            |
 | `ext`     | Lists all valid image extensions.                               |                                  |                            |
 
 For all commends, default export .pdf file name is `output.pdf`.
