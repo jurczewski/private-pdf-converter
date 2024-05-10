@@ -1,3 +1,4 @@
+using AutoFixture;
 using FluentAssertions;
 using ImageMagick;
 using PrivatePdfConverter.Commands;
@@ -8,20 +9,21 @@ namespace PrivatePdfConverter.UnitTests
     public class DirToPdfIntegrationUnitTests
     {
         [Fact]
-        public void ConvertDirectoryToOnePdf_Success()
+        public void ConvertDirectoryToOnePdf_ShouldBehaveCorrectly()
         {
             // Arrange
-            var inputDirectory = Path.Combine(Path.GetTempPath(), "InputDirectory");
-            var outputDirectory = Path.Combine(Path.GetTempPath(), "OutputDirectory");
-            Directory.CreateDirectory(inputDirectory);
-            Directory.CreateDirectory(outputDirectory);
+            var fixture = new Fixture();
+            var inputDirectoryName = fixture.Create<string>();
+            var inputDirPath = Path.Combine(Path.GetTempPath(), inputDirectoryName);
+            const string outputFileName = "final.pdf";
+            Directory.CreateDirectory(inputDirPath);
 
             // Create dummy image files
             var imagePaths = new[]
             {
-                Path.Combine(inputDirectory, "image1.png"),
-                Path.Combine(inputDirectory, "image2.jpg"),
-                Path.Combine(inputDirectory, "image3.bmp")
+                Path.Combine(inputDirPath, "image1.png"),
+                Path.Combine(inputDirPath, "image2.jpg"),
+                Path.Combine(inputDirPath, "image3.bmp")
             };
 
             foreach (var imagePath in imagePaths)
@@ -31,17 +33,19 @@ namespace PrivatePdfConverter.UnitTests
             }
 
             // Act
-            DirToPdf.ConvertDirectoryToOnePdf(inputDirectory, outputDirectory);
+            DirToPdf.ConvertDirectoryToOnePdf(inputDirPath, outputFileName);
 
             // Assert
-            var outputPdfPath = Directory.GetFiles(outputDirectory, "*.pdf").FirstOrDefault();
-            outputPdfPath.Should().NotBeNull();
-            outputPdfPath.Should().BeOfType<string>();
+            // Check if there is any pdf file created
+            var outputPdfPath = Directory.GetFiles(inputDirPath, "*.pdf").FirstOrDefault();
             File.Exists(outputPdfPath).Should().BeTrue();
 
+            // Check if there is a specif pdf with that name
+            var output = Path.Combine(Path.GetTempPath(), $"{inputDirectoryName}/{outputFileName}");
+            File.Exists(output).Should().BeTrue();
+
             // Clean up
-            Directory.Delete(inputDirectory, true);
-            Directory.Delete(outputDirectory, true);
+            Directory.Delete(inputDirPath, true);
         }
     }
 }
