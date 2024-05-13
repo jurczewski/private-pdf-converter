@@ -32,7 +32,11 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 
 For all commends, default export .pdf file name is `output.pdf`.
 
-Example of usage:
+Example of usage - build and run using [dotnet 8.0](https://dotnet.microsoft.com/en-us/download):
+
+```ps1
+dotnet build
+```
 
 ```ps1
 .\PrivatePdfConverter.exe dir --path "D:\dir-with-images"
