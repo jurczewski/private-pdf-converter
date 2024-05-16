@@ -34,7 +34,7 @@ public sealed class EncryptPdfTests : IDisposable
     }
 
     [Fact]
-    public void EncryptPdfAndOpenWithPassword()
+    public void EncryptPdfWithPassword_ShouldBehaveCorrectly()
     {
         // Arrange
         CreateSamplePdf(_samplePdfPath);
