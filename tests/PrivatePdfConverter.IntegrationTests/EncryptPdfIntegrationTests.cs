@@ -5,7 +5,7 @@ using iText.Kernel.Pdf;
 using PrivatePdfConverter.Commands;
 using Xunit;
 
-namespace PrivatePdfConverter.UnitTests;
+namespace PrivatePdfConverter.IntegrationTests;
 
 public sealed class EncryptPdfTests : IDisposable
 {

@@ -4,7 +4,7 @@ using ImageMagick;
 using PrivatePdfConverter.Commands;
 using Xunit;
 
-namespace PrivatePdfConverter.UnitTests;
+namespace PrivatePdfConverter.IntegrationTests;
 
 public sealed class ImgToPdfUnitTests
 {
