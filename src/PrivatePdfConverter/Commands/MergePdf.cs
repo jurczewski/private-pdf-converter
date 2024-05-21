@@ -8,12 +8,12 @@ public static class MergePdf
 {
     public static void ConvertDirectoryToOnePdf(string path, string? output)
     {
-        var filesPaths = path.LoadFilePathsFromDirectory("?.pdf");
-        var pdfs = filesPaths.Select(x => new PdfDocument(new PdfReader(x))).ToList();
+        var filesPaths = path.LoadFilePathsFromDirectory("*.pdf");
+        var pdfs = filesPaths.Select(x => new PdfDocument(new PdfReader(x)));
         SaveAsPdf(path, pdfs, output);
     }
 
-    private static void SaveAsPdf(string path, List<PdfDocument> pdfs, string? output)
+    private static void SaveAsPdf(string path, IEnumerable<PdfDocument> pdfs, string? output)
     {
         var outputFileName = output.PrepareOutputFileName();
 
@@ -22,9 +22,8 @@ public static class MergePdf
         foreach (var pdf in pdfs)
         {
             pdf.CopyPagesTo(1, pdf.GetNumberOfPages(), mergedDocument);
+            pdf.Close();
         }
-
-        pdfs.ForEach(x => x.Close());
 
         Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, fileWithPath);
     }
