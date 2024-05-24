@@ -44,7 +44,7 @@ dotnet build
 
 ### Supported file extensions
 
-Type `ext` argument to list all of valid image extensions.
+Type `ext` argument to list all of valid image extensions:
 
 - .jpg
 - .jpeg
@@ -79,8 +79,8 @@ Type `ext` argument to list all of valid image extensions.
 - [x] pipeline
 - [x] better readme
 - [x] cool labels (~~version~~, build, license, buymecoffe)
+- [x] integration tests
 - [ ] exe release
-- [ ] unit tests
 - [ ] auto release from master [LINK](https://github.com/xoofx/dotnet-releaser)
 - [ ] winget/chocolatey
 
