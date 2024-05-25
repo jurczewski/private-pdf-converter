@@ -34,5 +34,5 @@ public static class FileService
         return outputFileName;
     }
 
-    public static string AddFileToPath(this string? path, string fileName) => $"{path}/{fileName}";
+    public static string AddFileToPath(this string? path, string fileName) => $"{path}\\{fileName}";
 }
