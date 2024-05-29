@@ -24,18 +24,37 @@ public static class AddLogoToPdf
             return;
         }
 
-        var outputFileName = output.PrepareOutputFileName();
-        var exportFullPath = Path.GetDirectoryName(path).AddFileToPath(outputFileName);
-        Log.Logger.Information("Read a pdf from {Path}", path);
-        using var pdfDoc = new PdfDocument(new PdfReader(path), new PdfWriter(exportFullPath));
+        using var pdfDoc = OpenPdfAndPrepareExportFile(path, output, out var exportFullPath);
 
-        var logo = new Image(ImageDataFactory.Create(logoPath));
-        Log.Logger.Information("Read logo {Path}, image dimensions: {Width} x {Height}", logoPath, logo.GetImageWidth(), logo.GetImageHeight());
-
+        var logo = LoadImage(logoPath);
+        SetScale(logo);
         AddLogoToPages(pdfDoc, logo);
 
-        pdfDoc.Close();
         Log.Logger.Information("Created a new pdf at {ExportFullPath}", exportFullPath);
+    }
+
+    private static void SetScale(Image logo)
+    {
+        logo.SetAutoScaleWidth(true);
+        logo.SetAutoScaleHeight(true);
+    }
+
+    private static Image LoadImage(string logoPath)
+    {
+        var logo = new Image(ImageDataFactory.Create(logoPath));
+        Log.Logger.Information("Read logo {Path}, image dimensions: {Width} x {Height}", logoPath, logo.GetImageWidth(), logo.GetImageHeight());
+        return logo;
+    }
+
+    private static PdfDocument OpenPdfAndPrepareExportFile(string path, string? output, out string exportFullPath)
+    {
+        var outputFileName = output.PrepareOutputFileName();
+        exportFullPath = Path.GetDirectoryName(path).AddFileToPath(outputFileName);
+
+        var pdf = new PdfDocument(new PdfReader(path), new PdfWriter(exportFullPath));
+        Log.Logger.Information("Read a pdf from {Path}", path);
+
+        return pdf;
     }
 
     private static void AddLogoToPages(PdfDocument pdfDoc, Image logo)
@@ -44,9 +63,8 @@ public static class AddLogoToPdf
         for (var pageNum = 1; pageNum <= numberOfPages; pageNum++)
         {
             Log.Logger.Information("Adding to page {PageNumber} of {NumberOfPages}", pageNum, numberOfPages);
+
             logo.SetFixedPosition(pageNum, 0, 0);
-            logo.SetAutoScaleWidth(true);
-            logo.SetAutoScaleHeight(true);
 
             var pdfPage = pdfDoc.GetPage(pageNum);
             var pdfCanvas = new PdfCanvas(
@@ -55,8 +73,7 @@ public static class AddLogoToPdf
                 pdfDoc);
 
             using var canvas = new Canvas(pdfCanvas, pdfPage.GetPageSize());
-            canvas.Add(logo)
-                .Close();
+            canvas.Add(logo);
         }
     }
 }
