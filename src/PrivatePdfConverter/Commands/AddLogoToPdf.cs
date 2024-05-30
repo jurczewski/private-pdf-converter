@@ -10,7 +10,7 @@ namespace PrivatePdfConverter.Commands;
 
 public static class AddLogoToPdf
 {
-    public static void Run(string path, string logoPath, string position, string? output)
+    public static void Run(string path, string logoPath, string position, int? opacity, string? output)
     {
         if (!File.Exists(path))
         {
@@ -28,9 +28,19 @@ public static class AddLogoToPdf
 
         var logo = LoadImage(logoPath);
         SetScale(logo);
+        SetOpacity(opacity, logo);
         AddLogoToPages(pdfDoc, logo);
 
         Log.Logger.Information("Created a new pdf at {ExportFullPath}", exportFullPath);
+    }
+
+    private static void SetOpacity(int? opacity, Image logo)
+    {
+        if (opacity.HasValue)
+        {
+            logo.SetOpacity(opacity.Value / 100f);
+            Log.Logger.Information("Opacity: {Opacity}%", opacity);
+        }
     }
 
     private static void SetScale(Image logo)
