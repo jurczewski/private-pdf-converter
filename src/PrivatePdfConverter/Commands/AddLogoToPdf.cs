@@ -10,7 +10,7 @@ namespace PrivatePdfConverter.Commands;
 
 public static class AddLogoToPdf
 {
-    public static void Run(string path, string logoPath, string position, int? opacity, string? output)
+    public static void Run(string path, string logoPath, string position, int? scale, int? opacity, string? output)
     {
         if (!File.Exists(path))
         {
@@ -27,14 +27,14 @@ public static class AddLogoToPdf
         using var pdfDoc = OpenPdfAndPrepareExportFile(path, output, out var exportFullPath);
 
         var logo = LoadImage(logoPath);
-        SetScale(logo);
-        SetOpacity(opacity, logo);
+        SetScale(logo, scale);
+        SetOpacity(logo, opacity);
         AddLogoToPages(pdfDoc, logo);
 
         Log.Logger.Information("Created a new pdf at {ExportFullPath}", exportFullPath);
     }
 
-    private static void SetOpacity(int? opacity, Image logo)
+    private static void SetOpacity(Image logo, int? opacity)
     {
         if (opacity.HasValue)
         {
@@ -43,10 +43,19 @@ public static class AddLogoToPdf
         }
     }
 
-    private static void SetScale(Image logo)
+    private static void SetScale(Image logo, int? scaleInPercent)
     {
-        logo.SetAutoScaleWidth(true);
-        logo.SetAutoScaleHeight(true);
+        if (scaleInPercent.HasValue)
+        {
+            var scaleFloat = scaleInPercent.Value / 100f;
+            logo.Scale(scaleFloat, scaleFloat);
+            Log.Logger.Information("Scale: {Scale}%", scaleInPercent);
+        }
+        else
+        {
+            logo.SetAutoScaleWidth(true);
+            logo.SetAutoScaleHeight(true);
+        }
     }
 
     private static Image LoadImage(string logoPath)
