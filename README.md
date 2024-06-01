@@ -27,7 +27,8 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 | `merge`   | Merges all PDF files inside a directory into a single PDF file. | `path` - path to directory       | `output` - PDF output name |
 | `encrypt` | Encrypts PDF with a password.                                   | `path` - path to a PDF file      | `output` - PDF output name |
 |           |                                                                 | `password` - encryption password |                            |
-|           |                                                                 |                                  |                            |
+| `logo`    | Add image (logo) as a watermark to every page of PDF.            | `path` - path to a PDF file      | `output` - PDF output name |
+|           |                                                                 | `logo-path` - path to logo image |                            |
 | `ext`     | Lists all valid image extensions.                               |                                  |                            |
 
 For all commends, default export .pdf file name is `output.pdf`.
