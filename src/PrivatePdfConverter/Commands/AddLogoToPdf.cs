@@ -29,7 +29,9 @@ public static class AddLogoToPdf
         var logo = LoadImage(logoPath);
         SetScale(logo, scale);
         SetOpacity(logo, opacity);
-        AddLogoToPages(pdfDoc, logo);
+
+        var (x, y) = CalculatePosition(pdfDoc, position, logo);
+        AddLogoToPages(pdfDoc, logo, x, y);
 
         Log.Logger.Information("Created a new pdf at {ExportFullPath}", exportFullPath);
     }
@@ -49,7 +51,8 @@ public static class AddLogoToPdf
         {
             var scaleFloat = scaleInPercent.Value / 100f;
             logo.Scale(scaleFloat, scaleFloat);
-            Log.Logger.Information("Scale: {Scale}%", scaleInPercent);
+            Log.Logger.Information("Scale: {Scale}%. Scaled dimensions: {ScaledWidth} x {ScaledHeight}",
+                scaleInPercent, logo.GetImageScaledWidth(), logo.GetImageScaledHeight());
         }
         else
         {
@@ -71,19 +74,52 @@ public static class AddLogoToPdf
         exportFullPath = Path.GetDirectoryName(path).AddFileToPath(outputFileName);
 
         var pdf = new PdfDocument(new PdfReader(path), new PdfWriter(exportFullPath));
-        Log.Logger.Information("Read a pdf from {Path}", path);
+        Log.Logger.Information("Read a pdf {Path}", path);
 
         return pdf;
     }
 
-    private static void AddLogoToPages(PdfDocument pdfDoc, Image logo)
+    public static (float, float) CalculatePosition(PdfDocument pdfDoc, string position, Image logo)
+    {
+        float x, y; // left, bottom
+        var (logoWidth, logoHeight) = (logo.GetImageScaledWidth(), logo.GetImageScaledHeight());
+
+        switch (position.ToLower())
+        {
+            case "top-left":
+                x = 0;
+                y = pdfDoc.GetFirstPage().GetPageSize().GetHeight() - logoHeight;
+                break;
+            case "top-right":
+                x = pdfDoc.GetFirstPage().GetPageSize().GetWidth() - logoWidth;
+                y = pdfDoc.GetFirstPage().GetPageSize().GetHeight() - logoHeight;
+                break;
+            case "bottom-left":
+                x = 0;
+                y = 0;
+                break;
+            case "bottom-right":
+                x = pdfDoc.GetFirstPage().GetPageSize().GetWidth() - logoWidth;
+                y = 0;
+                break;
+            default:
+                throw new ArgumentException("Invalid position specified.");
+        }
+
+        Log.Logger.Information("For '{Position}' calculated position: {LogoWidth} x {LogoHeight}",
+            position, Math.Round(x, 1), Math.Round(y, 1));
+
+        return (x, y);
+    }
+
+    private static void AddLogoToPages(PdfDocument pdfDoc, Image logo, float x, float y)
     {
         var numberOfPages = pdfDoc.GetNumberOfPages();
         for (var pageNum = 1; pageNum <= numberOfPages; pageNum++)
         {
             Log.Logger.Information("Adding to page {PageNumber} of {NumberOfPages}", pageNum, numberOfPages);
 
-            logo.SetFixedPosition(pageNum, 0, 0);
+            logo.SetFixedPosition(pageNum, x, y);
 
             var pdfPage = pdfDoc.GetPage(pageNum);
             var pdfCanvas = new PdfCanvas(
