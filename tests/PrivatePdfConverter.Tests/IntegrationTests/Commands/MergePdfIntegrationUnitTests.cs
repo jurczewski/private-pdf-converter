@@ -5,9 +5,9 @@ using iText.Layout.Element;
 using PrivatePdfConverter.Commands;
 using Xunit;
 
-namespace PrivatePdfConverter.IntegrationTests.Commands;
+namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public class MergePdfIntegrationUnitTests
+public sealed class MergePdfIntegrationUnitTests
 {
     [Fact]
     public void ConvertDirectoryToOnePdf_ShouldMergePdfsCorrectly()

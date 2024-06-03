@@ -4,9 +4,9 @@ using ImageMagick;
 using PrivatePdfConverter.Commands;
 using Xunit;
 
-namespace PrivatePdfConverter.IntegrationTests.Commands;
+namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public class DirToPdfIntegrationUnitTests
+public sealed class DirToPdfIntegrationUnitTests
 {
     [Fact]
     public void ConvertDirectoryToOnePdf_ShouldBehaveCorrectly()

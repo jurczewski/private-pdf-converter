@@ -16,4 +16,8 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="PrivatePdfConverter.Tests" />
+  </ItemGroup>
+
 </Project>

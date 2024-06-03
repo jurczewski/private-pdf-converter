@@ -79,7 +79,7 @@ public static class AddLogoToPdf
         return pdf;
     }
 
-    public static (float, float) CalculatePosition(PdfDocument pdfDoc, string position, Image logo)
+    internal static (float, float) CalculatePosition(PdfDocument pdfDoc, string position, Image logo)
     {
         float x, y; // left, bottom
         var (logoWidth, logoHeight) = (logo.GetImageScaledWidth(), logo.GetImageScaledHeight());

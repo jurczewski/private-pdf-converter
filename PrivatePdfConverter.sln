@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49ACDD3F-0AF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{070EADA0-D8F8-41A1-B396-2E6E928276E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivatePdfConverter.IntegrationTests", "tests\PrivatePdfConverter.IntegrationTests\PrivatePdfConverter.IntegrationTests.csproj", "{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivatePdfConverter.Tests", "tests\PrivatePdfConverter.Tests\PrivatePdfConverter.Tests.csproj", "{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
