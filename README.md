@@ -18,18 +18,20 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 
 # Arguments
 
-| Argument  | Description                                                     | Options                          | Optional options           |
-| --------- | --------------------------------------------------------------- | -------------------------------- | -------------------------- |
-| `dir`     | Converts all images inside a directory to a single PDF file.    | `path` - path to directory       | `output` - PDF output name |
-|           | See below supported file extensions.                            |                                  |                            |
-| `img`     | Converts a single image to a single PDF file.                   | `path` - path to image           | `output` - PDF output name |
-|           | See below supported file extensions.                            |                                  |                            |
-| `merge`   | Merges all PDF files inside a directory into a single PDF file. | `path` - path to directory       | `output` - PDF output name |
-| `encrypt` | Encrypts PDF with a password.                                   | `path` - path to a PDF file      | `output` - PDF output name |
-|           |                                                                 | `password` - encryption password |                            |
-| `logo`    | Add image (logo) as a watermark to every page of PDF.            | `path` - path to a PDF file      | `output` - PDF output name |
-|           |                                                                 | `logo-path` - path to logo image |                            |
-| `ext`     | Lists all valid image extensions.                               |                                  |                            |
+| Argument  | Description                                                     | Options                          | Optional options                                                                                                          |
+| --------- | --------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `dir`     | Converts all images inside a directory to a single PDF file.    | `path` - path to directory       | `output` - PDF output name                                                                                                |
+|           | See below supported file extensions.                            |                                  |                                                                                                                           |
+| `img`     | Converts a single image to a single PDF file.                   | `path` - path to image           | `output` - PDF output name                                                                                                |
+|           | See below supported file extensions.                            |                                  |                                                                                                                           |
+| `merge`   | Merges all PDF files inside a directory into a single PDF file. | `path` - path to directory       | `output` - PDF output name                                                                                                |
+| `encrypt` | Encrypts PDF with a password.                                   | `path` - path to a PDF file      | `output` - PDF output name                                                                                                |
+|           |                                                                 | `password` - encryption password |                                                                                                                           |
+| `logo`    | Add image (logo) as a watermark to every page of PDF.           | `path` - path to a PDF file      | `output` - PDF output name                                                                                                |
+|           |                                                                 | `logo-path` - path to logo image | `scale` - Specifies the scale of the image in percentage (e.g., 25 for 25%, 150 for 150%). Default value: 100.            |
+|           |                                                                 |                                  | `opacity` - Specifies the opacity of the image in percentage (e.g., 25 for 25%, 0 for 0% - invisible) Default value: 100. |
+|           |                                                                 |                                  | `position` - Positions of logo. One of four values are accepted: `top-left`, `top-right`, `bottom-left`, `bottom-right`.  |
+| `ext`     | Lists all valid image extensions.                               |                                  |                                                                                                                           |
 
 For all commends, default export .pdf file name is `output.pdf`.
 
@@ -41,6 +43,12 @@ dotnet build
 
 ```ps1
 .\PrivatePdfConverter.exe dir --path "D:\dir-with-images"
+```
+
+Example of logo command:
+
+```ps1
+logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --scale 25 --opacity 50 --output "newpdf"
 ```
 
 ### Supported file extensions
@@ -64,9 +72,9 @@ Type `ext` argument to list all of valid image extensions:
 - [x] merge pdf (`merge`)
 - [x] encrypt pdf with password (`encrypt`)
 - [x] list all valid image extensions (`ext`)
+- [x] add watermark/logo to your pdf (`logo`)
 - [ ] convert PDF to multiple images (`???`)
 - [ ] split pdf (`split`)
-- [ ] add watermark/logo to your pdf
 - [ ] better TUI (menu)
 - [ ] set default export dir
 
