@@ -9,14 +9,14 @@
 ---
 
 <div align="center">
-  <img src="assets/logo.jpeg" width="200" height="200">
+  <img src="assets/logo.jpeg" width="200" height="200" alt="Logo">
 </div>
 
 ## Description
 
 Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a comprehensive PDF document. With a user-friendly terminal interface, this tool prioritizes privacy by ensuring all conversion processes occur offline, eliminating any reliance on cloud services. Stay in control of your sensitive data as you seamlessly transform images into PDFs without compromising confidentiality. Future updates will introduce additional features, such as PDF splitting, to further enhance functionality (see roadmap below).
 
-# Arguments
+## Arguments
 
 | Argument  | Description                                                     | Options                          | Optional options                                                                                                          |
 | --------- | --------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -78,7 +78,7 @@ Type `ext` argument to list all of valid image extensions:
 - [ ] better TUI (menu)
 - [ ] set default export dir
 
-### Other
+## Other
 
 - [x] readme
 - [x] features roadmap
@@ -89,18 +89,18 @@ Type `ext` argument to list all of valid image extensions:
 - [x] better readme
 - [x] cool labels (~~version~~, build, license, buymecoffe)
 - [x] integration tests
-- [ ] exe release
 - [ ] auto release from master [LINK](https://github.com/xoofx/dotnet-releaser)
+- [ ] exe release
 - [ ] winget/chocolatey
 
-# Development
+## Development
 
 TBA
 
-## Dependencies
+### Dependencies
 
 Based on micro-framework [Cocona](https://github.com/mayuki/Cocona).
 
-## Sonar statistics
+### Sonar statistics
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=bugs)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=coverage)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter)
