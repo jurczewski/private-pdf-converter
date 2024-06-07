@@ -3,8 +3,11 @@
 [![100 - Commitów](https://img.shields.io/badge/100-Commitów-2ea44f)](https://100commitow.pl/)
 [![Build](https://github.com/jurczewski/private-pdf-converter/actions/workflows/build.yaml/badge.svg)](https://github.com/jurczewski/private-pdf-converter/actions/workflows/build.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Linkedin](https://img.shields.io/badge/Linkedin-0882bd?logo=linkedin)](https://www.linkedin.com/in/jurczewski/)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jurczewski)
+
+###### ⭐ - The star motivates me a lot
 
 ---
 
@@ -12,11 +15,22 @@
   <img src="assets/logo.jpeg" width="200" height="200" alt="Logo">
 </div>
 
-## Description
+## ✒️ Description
 
 Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a comprehensive PDF document. With a user-friendly terminal interface, this tool prioritizes privacy by ensuring all conversion processes occur offline, eliminating any reliance on cloud services. Stay in control of your sensitive data as you seamlessly transform images into PDFs without compromising confidentiality. Future updates will introduce additional features, such as PDF splitting, to further enhance functionality (see roadmap below).
 
-## Arguments
+## 🎬 Real Life Scenario
+
+- You receive an addendum from work on paper and scan it into separate files.
+- You don't want to send your personal data to the cloud, nor do you want to install something big.
+
+**The solution is this CLI program** - simply enter a command along with the path to the folder containing the scans, and after a moment, you'll have the **combined images in a single PDF**.
+
+In three words:
+
+### ✨ **Small, offline, and convenient!**
+
+## 📐 Arguments
 
 | Argument  | Description                                                     | Options                          | Optional options                                                                                                          |
 | --------- | --------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -35,7 +49,7 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 
 For all commends, default export .pdf file name is `output.pdf`.
 
-Example of usage - build and run using [dotnet 8.0](https://dotnet.microsoft.com/en-us/download):
+Example of usage - build and run using [.NET 8.0](https://dotnet.microsoft.com/en-us/download):
 
 ```ps1
 dotnet build
@@ -51,7 +65,7 @@ Example of logo command:
 logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --scale 25 --opacity 50 --output "newpdf"
 ```
 
-### Supported file extensions
+### 📌 Supported file extensions
 
 Type `ext` argument to list all of valid image extensions:
 
@@ -64,7 +78,7 @@ Type `ext` argument to list all of valid image extensions:
 - .tiff
 - .webp
 
-## Features roadmap
+## 🗺️ Features roadmap
 
 - [x] convert dir to pdf (`dir`)
 - [x] create a PDF file from a single image (`img`)
@@ -78,7 +92,7 @@ Type `ext` argument to list all of valid image extensions:
 - [ ] better TUI (menu)
 - [ ] set default export dir
 
-## Other
+## 🎯 Other
 
 - [x] readme
 - [x] features roadmap
@@ -93,14 +107,20 @@ Type `ext` argument to list all of valid image extensions:
 - [ ] exe release
 - [ ] winget/chocolatey
 
-## Development
+## 🏅 Competition 100commitow
 
-TBA
+The project is part of the competition [100 commitow](https://100commitow.pl).
 
-### Dependencies
+## ⌨️ Development
+
+If you want to contribute, please take a look at the [Roadmap](#️-features-roadmap) or propose your own ideas.
+
+Please create a **Pull Request** with a solution if you are eager to help. Keep in mind the structure of a solution. If you are going to create a new command, make sure to do it in the [Commands](./src/PrivatePdfConverter/Commands/) directory.
+
+### 🔗 Dependencies
 
 Based on micro-framework [Cocona](https://github.com/mayuki/Cocona).
 
-### Sonar statistics
+### 📈 Sonar statistics
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=bugs)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=coverage)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter)
