@@ -13,4 +13,4 @@ app.AddCommand("logo", AddLogoToPdf.Run).WithDescription("Add an image/logo/wate
 
 Logger.Initialize();
 
-app.Run();
+await app.RunAsync();
