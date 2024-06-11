@@ -1,0 +1,6 @@
+# configuration file for dotnet-releaser
+[msbuild]
+project = "./src/PrivatePdfConverter/PrivatePdfConverter.csproj"
+[github]
+user = "jurczewski"
+repo = "private-pdf-converter"
