@@ -9,4 +9,7 @@ public static class Logger
         => Log.Logger = new LoggerConfiguration()
             .WriteTo.Console(theme: AnsiConsoleTheme.Code)
             .CreateLogger();
+
+    public static void LogStart(string versionString)
+        => Log.Logger.Information("--- PrivatePdfConverter v{VersionString} ---", versionString);
 }
