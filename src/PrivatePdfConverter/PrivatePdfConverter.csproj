@@ -5,6 +5,25 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <Title>PrivatePdfConverter</Title>
+        <Authors>Bartosz Jurczewski</Authors>
+        <PackageProjectUrl>https://github.com/jurczewski/private-pdf-converter</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/jurczewski/private-pdf-converter</RepositoryUrl>
+        <RepositoryType>GIT</RepositoryType>
+        <Version>1.0.0</Version>
+        <!-- <DocumentationFile>bin\$(Configuration)\KeyedSemaphores.xml</DocumentationFile> -->
+        <!-- <RootNamespace>KeyedSemaphores</RootNamespace> -->
+        <!-- <Description>Keyed semaphores are keyed lock objects that improve the parallelism in your application</Description> -->
+        <Copyright>MIT</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <!-- <PackageIcon>icon.png</PackageIcon> -->
+        <!-- <PackageTags>multithreading, parallelism</PackageTags> -->
+        <!-- <PackageReleaseNotes>See https://github.com/amoerie/keyed-semaphores/blob/main/CHANGELOG.MD</PackageReleaseNotes> -->
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>ppc</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
