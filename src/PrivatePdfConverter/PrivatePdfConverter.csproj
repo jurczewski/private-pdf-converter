@@ -15,7 +15,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <!-- <DocumentationFile>bin\$(Configuration)\KeyedSemaphores.xml</DocumentationFile> -->
         <!-- <RootNamespace>KeyedSemaphores</RootNamespace> -->
-        <!-- <Description>Keyed semaphores are keyed lock objects that improve the parallelism in your application</Description> -->
+        <Description>Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a comprehensive PDF document.</Description>
         <Copyright>MIT</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <!-- <PackageIcon>icon.png</PackageIcon> -->
