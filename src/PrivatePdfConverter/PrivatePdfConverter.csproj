@@ -5,7 +5,9 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+    </PropertyGroup>
 
+    <PropertyGroup>
         <Title>PrivatePdfConverter</Title>
         <Authors>Bartosz Jurczewski</Authors>
         <PackageProjectUrl>https://github.com/jurczewski/private-pdf-converter</PackageProjectUrl>
@@ -14,12 +16,11 @@
         <Version>1.0.0</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.jpeg</PackageIcon>
-        <!-- <RootNamespace>KeyedSemaphores</RootNamespace> -->
         <Description>Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a comprehensive PDF document.</Description>
         <Copyright>MIT</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <!-- <PackageTags>multithreading, parallelism</PackageTags> -->
-        <!-- <PackageReleaseNotes>See https://github.com/amoerie/keyed-semaphores/blob/main/CHANGELOG.MD</PackageReleaseNotes> -->
+        <PackageTags>pdf, privacy, dotnet, pdf-converter, private, split-pdf, merge-pdf, merge-pdf-images, 100commits, 100commitow</PackageTags>
+        <!-- <PackageReleaseNotes>See https://github.com/jurczewski/private-pdf-converter/blob/main/CHANGELOG.MD</PackageReleaseNotes> -->
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -40,6 +41,7 @@
 
     <ItemGroup>
         <None Include=".\..\..\README.md" Pack="true" PackagePath="\"/>
+        <None Include=".\..\..\CHANGELOG.md" Pack="true" PackagePath="\"/>
         <None Include=".\..\..\assets\logo.jpeg" Pack="true" PackagePath="\"/>
         <InternalsVisibleTo Include="PrivatePdfConverter.Tests"/>
     </ItemGroup>
