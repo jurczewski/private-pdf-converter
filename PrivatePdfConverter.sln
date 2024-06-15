@@ -8,6 +8,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{070EADA0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivatePdfConverter.Tests", "tests\PrivatePdfConverter.Tests\PrivatePdfConverter.Tests.csproj", "{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{B1DF999F-407C-4D02-BAB4-E88D209CC88F}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{60277903-146E-457E-B01F-73E3491DE256}"
+	ProjectSection(SolutionItems) = preProject
+		assets\logo-200x200.jpeg = assets\logo-200x200.jpeg
+		assets\logo.jpeg = assets\logo.jpeg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,5 +39,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DFFB0E89-1E25-474B-87CD-BC46C11BF72D} = {49ACDD3F-0AFE-4479-8B25-34077A1FDF76}
 		{BF00F46C-8F28-4B33-B609-1B3D3ABA1F32} = {070EADA0-D8F8-41A1-B396-2E6E928276E0}
+		{60277903-146E-457E-B01F-73E3491DE256} = {B1DF999F-407C-4D02-BAB4-E88D209CC88F}
 	EndGlobalSection
 EndGlobal
