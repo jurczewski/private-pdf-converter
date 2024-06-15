@@ -19,8 +19,8 @@
         <Description>Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a comprehensive PDF document.</Description>
         <Copyright>MIT</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageTags>pdf, privacy, dotnet, pdf-converter, private, split-pdf, merge-pdf, merge-pdf-images, 100commits, 100commitow</PackageTags>
-        <!-- <PackageReleaseNotes>See https://github.com/jurczewski/private-pdf-converter/blob/main/CHANGELOG.MD</PackageReleaseNotes> -->
+        <PackageTags>pdf, privacy, dotnet, pdf-converter, private, split-pdf, merge-pdf, merge-pdf-images, 100commits, 100commitow, cli, tool, dotnet-tool</PackageTags>
+        <PackageReleaseNotes>See https://github.com/jurczewski/private-pdf-converter/blob/master/CHANGELOG.md</PackageReleaseNotes>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
