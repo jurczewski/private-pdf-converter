@@ -2,6 +2,7 @@
 
 [![100 - Commitów](https://img.shields.io/badge/100-Commitów-2ea44f)](https://100commitow.pl/)
 [![Build](https://github.com/jurczewski/private-pdf-converter/actions/workflows/build.yaml/badge.svg)](https://github.com/jurczewski/private-pdf-converter/actions/workflows/build.yaml)
+[![NuGet version (PrivatePdfConverter)](https://img.shields.io/nuget/v/PrivatePdfConverter.svg?style=flat-square)](https://www.nuget.org/packages/PrivatePdfConverter/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Linkedin](https://img.shields.io/badge/Linkedin-0882bd?logo=linkedin)](https://www.linkedin.com/in/jurczewski/)
 
@@ -11,9 +12,7 @@
 
 ---
 
-<div align="center">
-  <img src="assets/logo.jpeg" width="200" height="200" alt="Logo">
-</div>
+![Logo](./assets/logo-200x200.jpeg)
 
 ## ✒️ Description
 
@@ -29,6 +28,26 @@ Private PDF Converter is a secure offline tool designed to effortlessly convert 
 In three words:
 
 ### ✨ **Small, offline, and convenient!**
+
+## ⚡ Install
+
+Just type to install:
+
+```ps1
+dotnet tool install --global PrivatePdfConverter
+```
+
+and then just run it!
+
+```ps1
+ppc dir --path "D:\dir-with-images"
+```
+
+Example of logo command:
+
+```ps1
+ppc logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --scale 25 --opacity 50 --output "newpdf"
+```
 
 ## 📐 Arguments
 
@@ -48,22 +67,6 @@ In three words:
 | `ext`     | Lists all valid image extensions.                               |                                  |                                                                                                                           |
 
 For all commends, default export .pdf file name is `output.pdf`.
-
-Example of usage - build and run using [.NET 8.0](https://dotnet.microsoft.com/en-us/download):
-
-```ps1
-dotnet build
-```
-
-```ps1
-.\PrivatePdfConverter.exe dir --path "D:\dir-with-images"
-```
-
-Example of logo command:
-
-```ps1
-logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --scale 25 --opacity 50 --output "newpdf"
-```
 
 ### 📌 Supported file extensions
 
@@ -116,6 +119,18 @@ The project is part of the competition [100 commitow](https://100commitow.pl).
 If you want to contribute, please take a look at the [Roadmap](#️-features-roadmap) or propose your own ideas.
 
 Please create a **Pull Request** with a solution if you are eager to help. Keep in mind the structure of a solution. If you are going to create a new command, make sure to do it in the [Commands](./src/PrivatePdfConverter/Commands/) directory.
+
+### Local
+
+Build and run using [.NET 8.0](https://dotnet.microsoft.com/en-us/download):
+
+```ps1
+dotnet build
+```
+
+```ps1
+.\PrivatePdfConverter.exe dir --path "D:\dir-with-images"
+```
 
 ### 🔗 Dependencies
 

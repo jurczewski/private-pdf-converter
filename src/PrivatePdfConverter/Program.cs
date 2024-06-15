@@ -1,6 +1,12 @@
-﻿using Cocona;
+﻿using System.Reflection;
+using Cocona;
 using PrivatePdfConverter;
 using PrivatePdfConverter.Commands;
+
+var versionString = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
+
+Logger.Initialize();
+Logger.LogStart(versionString);
 
 var app = CoconaLiteApp.Create();
 
@@ -10,7 +16,5 @@ app.AddCommand("ext", ListValidExt.ListValidExtensions).WithDescription("List al
 app.AddCommand("img", ImgToPdf.ConvertImageToOnePdf).WithDescription("Convert single image to single pdf file.");
 app.AddCommand("encrypt", EncryptPdf.EncryptPdfWithPassword).WithDescription("Encrypt pdf file with a password.");
 app.AddCommand("logo", AddLogoToPdf.Run).WithDescription("Add an image/logo/watermark to a every page of pdf file.");
-
-Logger.Initialize();
 
 await app.RunAsync();
