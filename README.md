@@ -30,6 +30,26 @@ In three words:
 
 ### ✨ **Small, offline, and convenient!**
 
+## ⚡ Install
+
+Just type to install:
+
+```ps1
+dotnet tool install --global PrivatePdfConverter
+```
+
+and then just run it!
+
+```ps1
+ppc dir --path "D:\dir-with-images"
+```
+
+Example of logo command:
+
+```ps1
+ppc logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --scale 25 --opacity 50 --output "newpdf"
+```
+
 ## 📐 Arguments
 
 | Argument  | Description                                                     | Options                          | Optional options                                                                                                          |
