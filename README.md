@@ -12,9 +12,7 @@
 
 ---
 
-<div align="center">
-  <img src="assets/logo.jpeg" width="200" height="200" alt="Logo">
-</div>
+![Logo](./assets/logo-200x200.jpeg)
 
 ## ✒️ Description
 
@@ -70,22 +68,6 @@ ppc logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --
 
 For all commends, default export .pdf file name is `output.pdf`.
 
-Example of usage - build and run using [.NET 8.0](https://dotnet.microsoft.com/en-us/download):
-
-```ps1
-dotnet build
-```
-
-```ps1
-.\PrivatePdfConverter.exe dir --path "D:\dir-with-images"
-```
-
-Example of logo command:
-
-```ps1
-logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --scale 25 --opacity 50 --output "newpdf"
-```
-
 ### 📌 Supported file extensions
 
 Type `ext` argument to list all of valid image extensions:
@@ -137,6 +119,18 @@ The project is part of the competition [100 commitow](https://100commitow.pl).
 If you want to contribute, please take a look at the [Roadmap](#️-features-roadmap) or propose your own ideas.
 
 Please create a **Pull Request** with a solution if you are eager to help. Keep in mind the structure of a solution. If you are going to create a new command, make sure to do it in the [Commands](./src/PrivatePdfConverter/Commands/) directory.
+
+### Local
+
+Build and run using [.NET 8.0](https://dotnet.microsoft.com/en-us/download):
+
+```ps1
+dotnet build
+```
+
+```ps1
+.\PrivatePdfConverter.exe dir --path "D:\dir-with-images"
+```
 
 ### 🔗 Dependencies
 
