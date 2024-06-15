@@ -41,5 +41,3 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
-
-artifacts-dotnet-releaser
