@@ -31,4 +31,4 @@ jobs:
         working-directory: ${{ env.PROJECT_DIR }}
       - name: Publish to NuGet
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: dotnet nuget push ${{ env.PROJECT_DIR }}/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ${{ env.PROJECT_DIR }}/nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
