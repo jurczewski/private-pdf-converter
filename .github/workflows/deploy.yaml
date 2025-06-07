@@ -1,13 +1,10 @@
-name: Build and Test
+name: Deploy .NET Tool to NuGet
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+  workflow_dispatch:
 
 jobs:
-  build-and-test:
+  deploy:
     runs-on: ubuntu-latest
     env:
       PROJECT_DIR: ./src/PrivatePdfConverter
@@ -23,6 +20,8 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
         working-directory: ${{ env.PROJECT_DIR }}
-      - name: Test
-        run: dotnet test
-        working-directory: ./
+      - name: Pack as .NET Tool
+        run: dotnet pack --configuration Release
+        working-directory: ${{ env.PROJECT_DIR }}
+      - name: Publish to NuGet
+        run: dotnet nuget push ${{ env.PROJECT_DIR }}/nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
