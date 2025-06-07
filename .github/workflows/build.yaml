@@ -26,3 +26,6 @@ jobs:
       - name: Test
         run: dotnet test
         working-directory: ./
+      - name: Pack as .NET Tool
+        run: dotnet pack --configuration Release
+        working-directory: ${{ env.PROJECT_DIR }}
