@@ -6,13 +6,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Linkedin](https://img.shields.io/badge/Linkedin-0882bd?logo=linkedin)](https://www.linkedin.com/in/jurczewski/)
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jurczewski)
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jurczewski)
 
 ###### ⭐ - The star motivates me a lot
 
 ---
 
-![Logo](./assets/logo-200x200.jpeg)
+![Logo](https://raw.githubusercontent.com/jurczewski/private-pdf-converter/master/assets/logo-200x200.jpeg)
 
 ## ✒️ Description
 
