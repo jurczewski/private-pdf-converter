@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net8.0;</TargetFrameworks>
+        <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net8.0</TargetFrameworks>
         <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
          <LangVersion>12</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
