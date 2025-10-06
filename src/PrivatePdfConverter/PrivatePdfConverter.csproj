@@ -16,7 +16,7 @@
         <PackageProjectUrl>https://github.com/jurczewski/private-pdf-converter</PackageProjectUrl>
         <RepositoryUrl>https://github.com/jurczewski/private-pdf-converter</RepositoryUrl>
         <RepositoryType>GIT</RepositoryType>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.jpeg</PackageIcon>
         <Description>Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a comprehensive PDF document.</Description>
