@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 		CHANGELOG.md = CHANGELOG.md
 		README.md = README.md
 		LICENSE = LICENSE
+		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{60277903-146E-457E-B01F-73E3491DE256}"
