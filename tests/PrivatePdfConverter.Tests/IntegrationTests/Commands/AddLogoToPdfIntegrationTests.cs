@@ -1,9 +1,6 @@
-using AutoFixture;
-using FluentAssertions;
 using ImageMagick;
 using iText.Kernel.Pdf;
 using PrivatePdfConverter.Commands;
-using Xunit;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 

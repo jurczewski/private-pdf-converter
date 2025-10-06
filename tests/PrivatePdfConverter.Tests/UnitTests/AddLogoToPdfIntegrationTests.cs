@@ -1,9 +1,7 @@
-using FluentAssertions;
 using iText.IO.Image;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using PrivatePdfConverter.Commands;
-using Xunit;
 
 namespace PrivatePdfConverter.Tests.UnitTests;
 

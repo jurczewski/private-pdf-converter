@@ -1,9 +1,6 @@
 using System.Text;
-using AutoFixture;
-using FluentAssertions;
 using iText.Kernel.Pdf;
 using PrivatePdfConverter.Commands;
-using Xunit;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
