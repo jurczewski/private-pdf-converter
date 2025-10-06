@@ -52,7 +52,7 @@ ppc logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --
 ## 📐 Arguments
 
 | Argument  | Description                                                     | Options                          | Optional options                                                                                                          |
-| --------- | --------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+|-----------|-----------------------------------------------------------------|----------------------------------|---------------------------------------------------------------------------------------------------------------------------|
 | `dir`     | Converts all images inside a directory to a single PDF file.    | `path` - path to directory       | `output` - PDF output name                                                                                                |
 |           | See below supported file extensions.                            |                                  |                                                                                                                           |
 | `img`     | Converts a single image to a single PDF file.                   | `path` - path to image           | `output` - PDF output name                                                                                                |
