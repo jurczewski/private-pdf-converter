@@ -18,10 +18,12 @@ jobs:
         run: dotnet restore
         working-directory: ${{ env.PROJECT_DIR }}
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build --no-restore --configuration Release
         working-directory: ${{ env.PROJECT_DIR }}
       - name: Pack as .NET Tool
         run: dotnet pack --configuration Release
         working-directory: ${{ env.PROJECT_DIR }}
       - name: Publish to NuGet
-        run: dotnet nuget push ${{ env.PROJECT_DIR }}/nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ${{ env.PROJECT_DIR }}/nupkg/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
