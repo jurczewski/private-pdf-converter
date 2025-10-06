@@ -18,10 +18,10 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet restore --configuration Release
+        run: dotnet restore
         working-directory: ${{ env.PROJECT_DIR }}
       - name: Build
-        run: dotnet build --no-restore -p:TreatWarningsAsErrors=true
+        run: dotnet build --no-restore -p:TreatWarningsAsErrors=true --configuration Release
         working-directory: ${{ env.PROJECT_DIR }}
       - name: Test
         run: dotnet test --configuration Release
