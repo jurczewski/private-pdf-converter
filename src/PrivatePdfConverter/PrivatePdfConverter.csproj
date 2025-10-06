@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -34,19 +34,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cocona.Lite" Version="2.2.0"/>
-        <PackageReference Include="itext7" Version="8.0.4"/>
-        <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.4"/>
-        <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.8.2" />
-        <PackageReference Include="Serilog" Version="4.3.0" />
-        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0"/>
+        <PackageReference Include="Cocona.Lite" />
+        <PackageReference Include="itext7" />
+        <PackageReference Include="itext7.bouncy-castle-adapter" />
+        <PackageReference Include="Magick.NET-Q8-AnyCPU" />
+        <PackageReference Include="Serilog" />
+        <PackageReference Include="Serilog.Sinks.Console" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include=".\..\..\README.md" Pack="true" PackagePath="\"/>
-        <None Include=".\..\..\CHANGELOG.md" Pack="true" PackagePath="\"/>
-        <None Include=".\..\..\assets\logo.jpeg" Pack="true" PackagePath="\"/>
-        <InternalsVisibleTo Include="PrivatePdfConverter.Tests"/>
+        <None Include=".\..\..\README.md" Pack="true" PackagePath="\" />
+        <None Include=".\..\..\CHANGELOG.md" Pack="true" PackagePath="\" />
+        <None Include=".\..\..\assets\logo.jpeg" Pack="true" PackagePath="\" />
+        <InternalsVisibleTo Include="PrivatePdfConverter.Tests" />
     </ItemGroup>
 
 </Project>
