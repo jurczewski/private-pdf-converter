@@ -22,6 +22,7 @@
   </ItemGroup>
   <!-- Vulnerabilities fix  -->
   <ItemGroup>
+    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.6.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
