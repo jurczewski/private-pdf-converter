@@ -10,8 +10,8 @@
     <PackageVersion Include="AwesomeAssertions" Version="9.2.0" />
     <PackageVersion Include="Cocona.Lite" Version="2.2.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
-    <PackageVersion Include="itext7" Version="8.0.4" />
-    <PackageVersion Include="itext7.bouncy-castle-adapter" Version="8.0.4" />
+    <PackageVersion Include="itext" Version="9.3.0" />
+    <PackageVersion Include="itext.bouncy-castle-adapter" Version="9.3.0" />
     <PackageVersion Include="Magick.NET-Q8-AnyCPU" Version="14.8.2" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />

@@ -35,8 +35,8 @@
 
     <ItemGroup>
         <PackageReference Include="Cocona.Lite" />
-        <PackageReference Include="itext7" />
-        <PackageReference Include="itext7.bouncy-castle-adapter" />
+        <PackageReference Include="itext" />
+        <PackageReference Include="itext.bouncy-castle-adapter" />
         <PackageReference Include="Magick.NET-Q8-AnyCPU" />
         <PackageReference Include="Serilog" />
         <PackageReference Include="Serilog.Sinks.Console" />
