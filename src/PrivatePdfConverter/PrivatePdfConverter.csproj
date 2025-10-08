@@ -2,35 +2,32 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net8.0</TargetFrameworks>
-        <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
-         <LangVersion>12</LangVersion>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>12</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <PropertyGroup>
         <PackageId>PrivatePdfConverter</PackageId>
+        <Version>1.0.2</Version>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>ppc</ToolCommandName>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+
+        <!-- General metadata -->
         <Title>PrivatePdfConverter</Title>
         <Authors>Bartosz Jurczewski</Authors>
         <PackageProjectUrl>https://github.com/jurczewski/private-pdf-converter</PackageProjectUrl>
         <RepositoryUrl>https://github.com/jurczewski/private-pdf-converter</RepositoryUrl>
         <RepositoryType>GIT</RepositoryType>
-        <Version>1.0.2</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.jpeg</PackageIcon>
-        <Description>Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a comprehensive PDF document.</Description>
+        <Description>Private PDF Converter is a secure offline tool designed to effortlessly convert PNG files stored locally into a PDF document.</Description>
         <Copyright>MIT</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>pdf, privacy, dotnet, pdf-converter, private, split-pdf, merge-pdf, merge-pdf-images, 100commits, 100commitow, cli, tool, dotnet-tool</PackageTags>
         <PackageReleaseNotes>See https://github.com/jurczewski/private-pdf-converter/blob/master/CHANGELOG.md</PackageReleaseNotes>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-
-        <PackAsTool>true</PackAsTool>
-        <ToolCommandName>ppc</ToolCommandName>
-        <PackageOutputPath>./nupkg</PackageOutputPath>
     </PropertyGroup>
 
     <ItemGroup>
