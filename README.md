@@ -16,7 +16,7 @@
 
 ## ✒️ Description
 
-Private PDF Converter is a secure, offline tool that quickly converts image files (like PNGs) into PDFs without needing an internet connection—keeping your data private on your device.
+Private PDF Converter is a secure, offline tool that quickly converts image files (like PNGs) into PDFs without needing an internet connection - keeping your data private on your device.
 
 It supports converting single images or entire directories into single PDF files. You can also merge multiple PDFs from a folder into one file, add password encryption for security, and watermark PDFs with a logo image adjustable by size, position, and opacity. The terminal interface is simple and efficient, making complex tasks easy to handle with just a single command.
 
