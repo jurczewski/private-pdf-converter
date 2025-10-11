@@ -108,7 +108,7 @@ Type `ext` argument to list all of valid image extensions:
 - [x] license
 - [x] pipeline
 - [x] better readme
-- [x] cool labels (~~version~~, build, license, buymecoffe)
+- [x] cool dynamic labels (version, build, license, buymecoffe)
 - [x] integration tests
 - [ ] auto release from master [dotnet-releaser](https://github.com/xoofx/dotnet-releaser)
 - [ ] exe release
