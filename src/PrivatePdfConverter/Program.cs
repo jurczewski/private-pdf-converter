@@ -27,4 +27,6 @@ static void RegisterCommands(CoconaLiteApp app)
         .WithDescription("Encrypt pdf file with a password.");
     app.AddCommand("logo", AddLogoToPdf.Run)
         .WithDescription("Add an image/logo/watermark to a every page of pdf file.");
+    app.AddCommand("split", SplitPdf.SplitPdfByPages)
+        .WithDescription("Split PDF file into smaller PDFs based on page ranges or individual pages.");
 }
