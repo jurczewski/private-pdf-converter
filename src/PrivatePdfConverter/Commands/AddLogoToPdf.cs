@@ -12,15 +12,9 @@ public static class AddLogoToPdf
 {
     public static void Run(string path, string logoPath, string position, int? scale, int? opacity, string? output)
     {
-        if (!File.Exists(path))
+        if (!FileService.ValidateFileExists(path, "PDF file") || 
+            !FileService.ValidateFileExists(logoPath, "Logo image file"))
         {
-            Log.Logger.Error("PDF file '{Path}' does not exist", path);
-            return;
-        }
-
-        if (!File.Exists(logoPath))
-        {
-            Log.Logger.Error("Logo image file '{LogoPath}' does not exist", logoPath);
             return;
         }
 

@@ -16,7 +16,7 @@ public static class PdfOperationHelper
     {
         var outputFileName = output.PrepareOutputFileName();
         var fileWithPath = useDirectoryName 
-            ? Path.GetDirectoryName(basePath).AddFileToPath(outputFileName)
+            ? (Path.GetDirectoryName(basePath) ?? Environment.CurrentDirectory).AddFileToPath(outputFileName)
             : basePath.AddFileToPath(outputFileName);
 
         images.Write(fileWithPath);
@@ -44,7 +44,7 @@ public static class PdfOperationHelper
     public static string PrepareOutputPath(string sourcePath, string? output, out string outputFileName)
     {
         outputFileName = output.PrepareOutputFileName();
-        return Path.GetDirectoryName(sourcePath).AddFileToPath(outputFileName);
+        return (Path.GetDirectoryName(sourcePath) ?? Environment.CurrentDirectory).AddFileToPath(outputFileName);
     }
 
     /// <summary>
