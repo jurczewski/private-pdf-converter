@@ -1,6 +1,5 @@
 using iText.Kernel.Pdf;
 using PrivatePdfConverter.Services;
-using Serilog;
 
 namespace PrivatePdfConverter.Commands;
 
@@ -15,9 +14,8 @@ public static class MergePdf
 
     private static void SaveAsPdf(string path, IEnumerable<PdfDocument> pdfs, string? output)
     {
-        var outputFileName = output.PrepareOutputFileName();
-
-        var fileWithPath = path.AddFileToPath(outputFileName);
+        var fileWithPath = PdfOperationHelper.PrepareDirectoryOutputPath(path, output, out var outputFileName);
+        
         using var mergedDocument = new PdfDocument(new PdfWriter(fileWithPath));
         foreach (var pdf in pdfs)
         {
@@ -25,6 +23,6 @@ public static class MergePdf
             pdf.Close();
         }
 
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, fileWithPath);
+        PdfOperationHelper.LogPdfCreation(outputFileName, fileWithPath);
     }
 }

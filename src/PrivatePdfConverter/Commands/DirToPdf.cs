@@ -1,6 +1,5 @@
 using ImageMagick;
 using PrivatePdfConverter.Services;
-using Serilog;
 
 namespace PrivatePdfConverter.Commands;
 
@@ -14,16 +13,6 @@ public static class DirToPdf
         using var images = new MagickImageCollection();
         supportedFiles.ForEach(x => images.Add(new MagickImage(x)));
 
-        SaveAsPdf(path, images, output);
-    }
-
-    private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
-    {
-        var outputFileName = output.PrepareOutputFileName();
-        var fileWithPath = path.AddFileToPath(outputFileName);
-
-        images.Write(fileWithPath);
-
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, fileWithPath);
+        PdfOperationHelper.SaveImageCollectionAsPdf(path, images, output);
     }
 }

@@ -15,20 +15,11 @@ public static class ImgToPdf
             return;
         }
 
-        Log.Logger.Information("Read 1 file with name: {FileName}, Full path: '{Path}'", Path.GetFileName(path), path);
+        PdfOperationHelper.LogSingleFileRead(path);
 
         using var images = new MagickImageCollection();
         images.Add(new MagickImage(path));
 
-        SaveAsPdf(path, images, output);
-    }
-
-    private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
-    {
-        var outputFileName = output.PrepareOutputFileName();
-
-        images.Write($"{Path.GetDirectoryName(path).AddFileToPath(outputFileName)}");
-
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, path.AddFileToPath(outputFileName));
+        PdfOperationHelper.SaveImageCollectionAsPdf(path, images, output, useDirectoryName: true);
     }
 }
