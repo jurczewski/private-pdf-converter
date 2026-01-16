@@ -11,6 +11,12 @@ public static class DirToPdf
         var filesPaths = path.LoadFilePathsFromDirectory();
         var supportedFiles = filesPaths.Where(x => Path.GetExtension(x).IsImage()).ToList();
 
+        if (supportedFiles.Count == 0)
+        {
+            Log.Logger.Warning("No supported image files found in directory '{Path}'", path);
+            return;
+        }
+
         using var images = new MagickImageCollection();
         supportedFiles.ForEach(x => images.Add(new MagickImage(x)));
 
