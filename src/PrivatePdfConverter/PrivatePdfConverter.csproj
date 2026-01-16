@@ -26,7 +26,7 @@
         <Description>Private PDF Converter is a simple, secure offline tool for quickly turning your image files (like PNGs) into a single PDF - no internet required. Your files stay private on your device. It also includes features like merging PDFs, encrypting with passwords, and adding customizable watermarks.</Description>
         <Copyright>MIT</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageTags>pdf, privacy, dotnet, pdf-converter, private, split-pdf, merge-pdf, merge-pdf-images, 100commits, 100commitow, cli, tool, dotnet-tool</PackageTags>
+        <PackageTags>pdf, privacy, dotnet, pdf-converter, private, image-to-pdf, pdf-merge, pdf-encrypt, watermark, 100commits, 100commitow, cli, tool, dotnet-tool</PackageTags>
         <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../CHANGELOG.md"))</PackageReleaseNotes>
     </PropertyGroup>
 
@@ -42,6 +42,7 @@
     <ItemGroup>
         <None Include=".\..\..\README.md" Pack="true" PackagePath="\" />
         <None Include=".\..\..\CHANGELOG.md" Pack="true" PackagePath="\" />
+        <None Include=".\..\..\LICENSE" Pack="true" PackagePath="\" />
         <None Include=".\..\..\assets\logo.jpeg" Pack="true" PackagePath="\" />
         <InternalsVisibleTo Include="PrivatePdfConverter.Tests" />
     </ItemGroup>
