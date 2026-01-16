@@ -10,7 +10,7 @@
 
     <PropertyGroup>
         <PackageId>PrivatePdfConverter</PackageId>
-        <Version>1.1.1</Version>
+        <Version>1.2.0</Version>
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>ppc</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>

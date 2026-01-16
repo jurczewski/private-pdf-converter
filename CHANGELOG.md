@@ -1,5 +1,28 @@
 # 🔑🔒 Changelog
 
+## 1.2.0 - 2026.01.16 - .NET 10 LTS & auto output naming
+
+### Features
+
+- **feat:** auto-detect output filename from source file (defaults to source name when no output specified)
+
+### Core Changes
+
+- **chore:** upgrade .NET SDK version to 10.0.x across workflows and project files
+- **fix:** make changelog on nuget.org to read from CHANGELOG.md file directly (fix PackageReleaseNotes path)
+
+### Maintenance
+
+- **chore:** bump dependencies: itext and Magick.NET dependencies - fix vulnerability in Magick
+- **chore:** improve comments and simplify AddFileToPath method
+- **chore:** update NuGet badge style to match others
+- **fix:** "Buy Me a Coffee" badge link
+- **chore(ci):** update NuGet vulnerability scan schedule - Runs at 09:00 UTC, only on Wednesday
+- **chore(ci):** upgrade GitHub Actions: checkout@v2→v4, setup-dotnet@v1→v5 in deploy workflow
+- **docs:** add version check command example to README
+- **improve:** add validation to prevent creating empty PDFs when no images found in directory
+- **chore:** update package tags with more specific keywords
+
 ## 1.1.1 - 2025.10.08 - fix readme
 
 - Readme fix: misspell
