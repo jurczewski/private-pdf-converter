@@ -94,12 +94,13 @@ Type `ext` argument to list all of valid image extensions:
 - [x] encrypt pdf with password (`encrypt`)
 - [x] list all valid image extensions (`ext`)
 - [x] add watermark/logo to your pdf (`logo`)
-- [ ] convert PDF to multiple images (`???`)
+- [x] auto-detect output filename from source file
 - [ ] split pdf (`split`)
+- [ ] convert PDF to multiple images (`???`)
 - [ ] better TUI (menu)
 - [ ] set default export dir
 
-## 🎯 Other
+## 🎯 Others
 
 - [x] readme
 - [x] features roadmap
@@ -110,7 +111,7 @@ Type `ext` argument to list all of valid image extensions:
 - [x] better readme
 - [x] cool dynamic labels (version, build, license, buymecoffe)
 - [x] integration tests
-- [ ] auto release from master [dotnet-releaser](https://github.com/xoofx/dotnet-releaser)
+- [x] manual CD pipeline for NuGet releases
 - [ ] exe release
 - [ ] winget/chocolatey
 
