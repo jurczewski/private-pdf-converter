@@ -47,6 +47,12 @@ and then just run it!
 ppc dir --path "D:\dir-with-images"
 ```
 
+Check version:
+
+```ps1
+ppc --version
+```
+
 Example of logo command:
 
 ```ps1
