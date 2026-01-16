@@ -3,7 +3,7 @@ using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public sealed class ImgToPdfUnitTests
+public sealed class ImgToPdfIntegrationTests
 {
     [Fact]
     public void ConvertImageToOnePdf_ShouldBehaveCorrectly()

@@ -5,7 +5,7 @@ using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public sealed class MergePdfIntegrationUnitTests
+public sealed class MergePdfIntegrationTests
 {
     [Fact]
     public void ConvertDirectoryToOnePdf_ShouldMergePdfsCorrectly()

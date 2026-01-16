@@ -5,7 +5,7 @@ using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.UnitTests;
 
-public sealed class AddLogoToPdfTests
+public sealed class AddLogoToPdfUnitTests
 {
     [Theory]
     [InlineData("top-left")]
