@@ -27,7 +27,7 @@
         <Copyright>MIT</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>pdf, privacy, dotnet, pdf-converter, private, split-pdf, merge-pdf, merge-pdf-images, 100commits, 100commitow, cli, tool, dotnet-tool</PackageTags>
-        <PackageReleaseNotes>See https://github.com/jurczewski/private-pdf-converter/blob/master/CHANGELOG.md</PackageReleaseNotes>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../CHANGELOG.md"))</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
