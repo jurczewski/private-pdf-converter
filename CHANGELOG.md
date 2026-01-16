@@ -1,5 +1,10 @@
 # 🔑🔒 Changelog
 
+## 1.1.1 - 2025.10.08 - fix readme
+
+- Readme fix: misspell
+- Readme format
+
 ## 1.1.0 - 2025.10.08 - vulnerabilities fix release
 
 - Resolve NuGet vulnerabilities
