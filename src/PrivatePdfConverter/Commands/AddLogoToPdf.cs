@@ -70,7 +70,7 @@ public static class AddLogoToPdf
 
     private static PdfDocument OpenPdfAndPrepareExportFile(string path, string? output, out string exportFullPath)
     {
-        var outputFileName = output.PrepareOutputFileName();
+        var outputFileName = output.PrepareOutputFileName(path);
         exportFullPath = Path.GetDirectoryName(path).AddFileToPath(outputFileName);
 
         var pdf = new PdfDocument(new PdfReader(path), new PdfWriter(exportFullPath));

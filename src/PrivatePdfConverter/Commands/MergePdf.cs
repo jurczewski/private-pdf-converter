@@ -15,7 +15,7 @@ public static class MergePdf
 
     private static void SaveAsPdf(string path, IEnumerable<PdfDocument> pdfs, string? output)
     {
-        var outputFileName = output.PrepareOutputFileName();
+        var outputFileName = output.PrepareOutputFileName(path);
 
         var fileWithPath = path.AddFileToPath(outputFileName);
         using var mergedDocument = new PdfDocument(new PdfWriter(fileWithPath));

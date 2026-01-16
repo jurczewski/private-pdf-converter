@@ -25,10 +25,11 @@ public static class ImgToPdf
 
     private static void SaveAsPdf(string path, MagickImageCollection images, string? output)
     {
-        var outputFileName = output.PrepareOutputFileName();
+        var outputFileName = output.PrepareOutputFileName(path);
 
-        images.Write($"{Path.GetDirectoryName(path).AddFileToPath(outputFileName)}");
+        var fileWithPath = Path.GetDirectoryName(path).AddFileToPath(outputFileName);
+        images.Write(fileWithPath);
 
-        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, path.AddFileToPath(outputFileName));
+        Log.Logger.Information("PDF '{OutputFileName}' created at '{Path}'", outputFileName, fileWithPath);
     }
 }

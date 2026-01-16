@@ -21,18 +21,36 @@ public static class FileService
         return files;
     }
 
-    public static string PrepareOutputFileName(this string? output)
+    /// <summary>
+    /// Prepares the output file name based on the provided output or source path.
+    /// If `output` is provided use it (and ensure .pdf). If not provided, derive name from `sourcePath` filename.
+    /// Example: sourcePath = "C:\\images\\photo.jpg" -> "photo.pdf"
+    /// </summary>
+    /// <param name="output"></param>
+    /// <param name="sourcePath"></param>
+    /// <returns></returns>
+    public static string PrepareOutputFileName(this string? output, string sourcePath)
     {
-        var outputFileName = string.IsNullOrEmpty(output) ? "output.pdf" : output;
-
-        // check if filename already has .pdf extension, if not add .pdf at the end
-        if (!outputFileName.EndsWith(".pdf"))
+        if (!string.IsNullOrEmpty(output))
         {
-            outputFileName += ".pdf";
+            return output.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
+                ? output
+                : output + ".pdf";
         }
 
-        return outputFileName;
+        // derive from source path filename
+        var sourceFileName = Path.GetFileNameWithoutExtension(sourcePath);
+        var outputFileName = string.IsNullOrEmpty(sourceFileName) ? "output" : sourceFileName;
+        return outputFileName + ".pdf";
     }
 
-    public static string AddFileToPath(this string? path, string fileName) => $"{path}{Path.DirectorySeparatorChar}{fileName}";
+    public static string AddFileToPath(this string? path, string fileName)
+    {
+        if (string.IsNullOrEmpty(path))
+        {
+            return fileName;
+        }
+
+        return Path.Combine(path, fileName);
+    }
 }
