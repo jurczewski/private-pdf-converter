@@ -23,7 +23,7 @@ public static class FileService
 
     /// <summary>
     /// Prepares the output file name based on the provided output or source path.
-    /// If `output` is provided use it (and ensure .pdf). If not provided, derive name from `sourcePath` filename.
+    /// If `output` is provided, use it (and ensure .pdf). If not provided, derive the name from the `sourcePath` filename.
     /// Example: sourcePath = "C:\\images\\photo.jpg" -> "photo.pdf"
     /// </summary>
     /// <param name="output"></param>
@@ -38,19 +38,12 @@ public static class FileService
                 : output + ".pdf";
         }
 
-        // derive from source path filename
+        // derive from the source path filename
         var sourceFileName = Path.GetFileNameWithoutExtension(sourcePath);
         var outputFileName = string.IsNullOrEmpty(sourceFileName) ? "output" : sourceFileName;
         return outputFileName + ".pdf";
     }
 
     public static string AddFileToPath(this string? path, string fileName)
-    {
-        if (string.IsNullOrEmpty(path))
-        {
-            return fileName;
-        }
-
-        return Path.Combine(path, fileName);
-    }
+        => !string.IsNullOrEmpty(path) ? Path.Combine(path, fileName) : fileName;
 }
