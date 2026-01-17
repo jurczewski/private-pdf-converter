@@ -69,7 +69,6 @@ jobs:
             --self-contained true `
             --output ${{ env.OUTPUT_DIR }} `
             -p:PublishSingleFile=true `
-            -p:PublishTrimmed=true `
             -p:EnableCompressionInSingleFile=true
         shell: pwsh
 
