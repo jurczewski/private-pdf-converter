@@ -1,4 +1,4 @@
-name: Create Release Executables
+name: CD - Create Release Executables
 
 on:
   release:
@@ -39,12 +39,16 @@ jobs:
     env:
       PROJECT_PATH: ./src/PrivatePdfConverter/PrivatePdfConverter.csproj
       OUTPUT_DIR: ./publish/${{ matrix.runtime }}
-      RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
 
     steps:
+      - name: Set release tag
+        id: tag
+        run: echo "RELEASE_TAG=${{ github.event.inputs.tag || github.ref_name }}" >> $GITHUB_OUTPUT
+        shell: bash
+
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.tag || github.ref }}
+          ref: ${{ steps.tag.outputs.RELEASE_TAG }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -83,6 +87,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: artifacts/${{ matrix.artifact }}
-          tag_name: ${{ env.RELEASE_TAG }}
+          tag_name: ${{ steps.tag.outputs.RELEASE_TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
