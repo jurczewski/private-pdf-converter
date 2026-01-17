@@ -35,13 +35,27 @@ In three words:
 
 ## ⚡ Install
 
+### Option 1: .NET Tool (Recommended)
+
 Just type to install:
 
 ```ps1
 dotnet tool install --global PrivatePdfConverter
 ```
 
-and then just run it!
+### Option 2: Standalone Executable
+
+Download the latest release for your platform from the [Releases page](https://github.com/jurczewski/private-pdf-converter/releases/latest):
+
+- Windows (x64/ARM64): `PrivatePdfConverter-win-x64.exe` or `PrivatePdfConverter-win-arm64.exe`
+- Linux (x64/ARM64): `PrivatePdfConverter-linux-x64` or `PrivatePdfConverter-linux-arm64`
+- macOS (x64/ARM64): `PrivatePdfConverter-osx-x64` or `PrivatePdfConverter-osx-arm64`
+
+No installation required - just download and run!
+
+## 💻 Usage
+
+Run commands:
 
 ```ps1
 ppc dir --path "D:\dir-with-images"
@@ -118,7 +132,7 @@ Type `ext` argument to list all the valid image extensions:
 - [x] cool dynamic labels (version, build, license, buymecoffe)
 - [x] integration tests
 - [x] manual CD pipeline for NuGet releases
-- [ ] exe release
+- [x] exe release
 - [ ] winget/chocolatey
 
 ## 🏅 Competition 100commitow
