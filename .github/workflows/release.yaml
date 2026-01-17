@@ -1,0 +1,78 @@
+name: Create Release Executables
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            runtime: win-x64
+            artifact: PrivatePdfConverter-win-x64.exe
+          - os: windows-latest
+            runtime: win-arm64
+            artifact: PrivatePdfConverter-win-arm64.exe
+          - os: ubuntu-latest
+            runtime: linux-x64
+            artifact: PrivatePdfConverter-linux-x64
+          - os: ubuntu-latest
+            runtime: linux-arm64
+            artifact: PrivatePdfConverter-linux-arm64
+          - os: macos-latest
+            runtime: osx-x64
+            artifact: PrivatePdfConverter-osx-x64
+          - os: macos-latest
+            runtime: osx-arm64
+            artifact: PrivatePdfConverter-osx-arm64
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      PROJECT_PATH: ./src/PrivatePdfConverter/PrivatePdfConverter.csproj
+      OUTPUT_DIR: ./publish/${{ matrix.runtime }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: Publish self-contained executable
+        run: |
+          dotnet publish ${{ env.PROJECT_PATH }} \
+            --configuration Release \
+            --runtime ${{ matrix.runtime }} \
+            --self-contained true \
+            --output ${{ env.OUTPUT_DIR }} \
+            -p:PublishSingleFile=true \
+            -p:PublishTrimmed=true \
+            -p:EnableCompressionInSingleFile=true
+
+      - name: Prepare artifact (Windows)
+        if: startsWith(matrix.runtime, 'win')
+        run: |
+          mkdir -p artifacts
+          mv ${{ env.OUTPUT_DIR }}/PrivatePdfConverter.exe artifacts/${{ matrix.artifact }}
+        shell: bash
+
+      - name: Prepare artifact (Unix)
+        if: startsWith(matrix.runtime, 'linux') || startsWith(matrix.runtime, 'osx')
+        run: |
+          mkdir -p artifacts
+          mv ${{ env.OUTPUT_DIR }}/PrivatePdfConverter artifacts/${{ matrix.artifact }}
+          chmod +x artifacts/${{ matrix.artifact }}
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/${{ matrix.artifact }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
