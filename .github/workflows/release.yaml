@@ -71,6 +71,7 @@ jobs:
             -p:PublishSingleFile=true `
             -p:PublishTrimmed=true `
             -p:EnableCompressionInSingleFile=true
+        shell: pwsh
 
       - name: Prepare artifact (Windows)
         if: startsWith(matrix.runtime, 'win')
