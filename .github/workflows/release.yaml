@@ -1,4 +1,4 @@
-name: Create Release Executables
+name: Deploy Release Executables
 
 on:
   release:
