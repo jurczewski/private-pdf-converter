@@ -39,9 +39,12 @@ jobs:
     env:
       PROJECT_PATH: ./src/PrivatePdfConverter/PrivatePdfConverter.csproj
       OUTPUT_DIR: ./publish/${{ matrix.runtime }}
+      RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -80,6 +83,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: artifacts/${{ matrix.artifact }}
-          tag_name: ${{ inputs.tag || github.ref }}
+          tag_name: ${{ env.RELEASE_TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
