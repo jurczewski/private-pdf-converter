@@ -62,15 +62,7 @@ jobs:
         run: dotnet restore ${{ env.PROJECT_PATH }}
 
       - name: Publish self-contained executable
-        run: |
-          dotnet publish ${{ env.PROJECT_PATH }} \
-            --configuration Release \
-            --runtime ${{ matrix.runtime }} \
-            --self-contained true \
-            --output ${{ env.OUTPUT_DIR }} \
-            -p:PublishSingleFile=true \
-            -p:PublishTrimmed=true \
-            -p:EnableCompressionInSingleFile=true
+        run: dotnet publish ${{ env.PROJECT_PATH }} --configuration Release --runtime ${{ matrix.runtime }} --self-contained true --output ${{ env.OUTPUT_DIR }} -p:PublishSingleFile=true -p:PublishTrimmed=true -p:EnableCompressionInSingleFile=true
 
       - name: Prepare artifact (Windows)
         if: startsWith(matrix.runtime, 'win')
