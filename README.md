@@ -51,14 +51,18 @@ Download the latest release for your platform from the [Releases page](https://g
 - Linux (x64/ARM64): `PrivatePdfConverter-linux-x64` or `PrivatePdfConverter-linux-arm64`
 - macOS (x64/ARM64): `PrivatePdfConverter-osx-x64` or `PrivatePdfConverter-osx-arm64`
 
-No installation required - just download and run!
-
 ## 💻 Usage
 
-Run commands:
+**For .NET Tool (Option 1)** - use `ppc` command:
 
 ```ps1
 ppc dir --path "D:\dir-with-images"
+```
+
+**For Standalone Executable (Option 2)** - use `.\executable-name` in terminal:
+
+```ps1
+.\PrivatePdfConverter-win-x64.exe dir --path "D:\dir-with-images"
 ```
 
 Check version:
