@@ -44,7 +44,4 @@ public static class FileService
         var outputFileName = string.IsNullOrEmpty(sourceFileName) ? "output" : sourceFileName;
         return outputFileName + ".pdf";
     }
-
-    public static string AddFileToPath(this string? path, string fileName)
-        => !string.IsNullOrEmpty(path) ? Path.Combine(path, fileName) : fileName;
 }

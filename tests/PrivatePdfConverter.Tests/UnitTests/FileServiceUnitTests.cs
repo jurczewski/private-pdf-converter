@@ -83,32 +83,4 @@ public sealed class FileServiceUnitTests
         // Assert
         result.Should().Be("file.pdf");
     }
-
-    [Fact]
-    public void PathCombine_WithPath_ShouldCombine()
-    {
-        // Arrange
-        var path = $"C:{Path.DirectorySeparatorChar}dir";
-        const string fileName = "output.pdf";
-
-        // Act
-        var result = Path.Combine(path, fileName);
-
-        // Assert
-        result.Should().Be($"C:{Path.DirectorySeparatorChar}dir{Path.DirectorySeparatorChar}output.pdf");
-    }
-
-    [Fact]
-    public void PathCombine_WithNullPath_ShouldReturnFileName()
-    {
-        // Arrange
-        string? path = null;
-        const string fileName = "output.pdf";
-
-        // Act
-        var result = Path.Combine(path ?? string.Empty, fileName);
-
-        // Assert
-        result.Should().Be("output.pdf");
-    }
 }

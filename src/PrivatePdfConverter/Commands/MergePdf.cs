@@ -17,7 +17,7 @@ public static class MergePdf
     {
         var outputFileName = output.PrepareOutputFileName(path);
 
-        var fileWithPath = path.AddFileToPath(outputFileName);
+        var fileWithPath = Path.Combine(path, outputFileName);
         using var mergedDocument = new PdfDocument(new PdfWriter(fileWithPath));
         foreach (var pdf in pdfs)
         {
