@@ -76,11 +76,11 @@ ppc logo --path "D:\1.pdf" --logo-path "D:\logo.png" --position "bottom-left" --
 |           |                                                                 |                                  | `position` - Positions of logo. One of four values are accepted: `top-left`, `top-right`, `bottom-left`, `bottom-right`.  |
 | `ext`     | Lists all valid image extensions.                               |                                  |                                                                                                                           |
 
-For all commends, default export .pdf file name is `output.pdf`.
+For all commands, default export .pdf file name is `output.pdf`.
 
 ### 📌 Supported file extensions
 
-Type `ext` argument to list all of valid image extensions:
+Type `ext` argument to list all the valid image extensions:
 
 - .jpg
 - .jpeg
@@ -97,11 +97,11 @@ Type `ext` argument to list all of valid image extensions:
 - [x] create a PDF file from a single image (`img`)
 - [x] multiple image extensions support
 - [x] merge pdf (`merge`)
-- [x] encrypt pdf with password (`encrypt`)
+- [x] encrypt PDF with password (`encrypt`)
 - [x] list all valid image extensions (`ext`)
-- [x] add watermark/logo to your pdf (`logo`)
+- [x] add watermark/logo to your PDF (`logo`)
 - [x] auto-detect output filename from source file
-- [ ] split pdf (`split`)
+- [ ] split PDF (`split`)
 - [ ] convert PDF to multiple images (`???`)
 - [ ] better TUI (menu)
 - [ ] set default export dir
