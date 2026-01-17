@@ -9,7 +9,8 @@ public static class FileService
         "jpg", "jpeg", "bmp", "gif", "png", "tif", "tiff", "webp"
     ];
 
-    public static bool IsImage(this string extension) => ValidExtensions.Contains(extension.ToLower()[1..]);
+    public static bool IsImage(this string? extension)
+        => !string.IsNullOrEmpty(extension) && ValidExtensions.Contains(extension.ToLower()[1..]);
 
     public static IEnumerable<string> LoadFilePathsFromDirectory(this string path, string searchPattern = "*")
     {
