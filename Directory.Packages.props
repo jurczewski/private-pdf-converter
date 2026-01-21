@@ -12,7 +12,7 @@
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="itext" Version="9.5.0" />
     <PackageVersion Include="itext.bouncy-castle-adapter" Version="9.5.0" />
-    <PackageVersion Include="Magick.NET-Q8-AnyCPU" Version="14.10.1" />
+    <PackageVersion Include="Magick.NET-Q8-AnyCPU" Version="14.10.2" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="Serilog" Version="4.3.0" />
