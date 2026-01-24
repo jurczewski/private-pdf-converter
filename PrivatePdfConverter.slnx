@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/solution-items/">
+    <File Path="CHANGELOG.md" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/solution-items/assets/">
+    <File Path="assets/logo-200x200.jpeg" />
+    <File Path="assets/logo.jpeg" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/PrivatePdfConverter/PrivatePdfConverter.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PrivatePdfConverter.Tests/PrivatePdfConverter.Tests.csproj" />
+  </Folder>
+</Solution>
