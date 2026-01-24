@@ -1,4 +1,4 @@
-using iText.Kernel.Pdf;
+﻿using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using PrivatePdfConverter.Commands;
@@ -11,7 +11,7 @@ public sealed class MergePdfIntegrationTests
     public void ConvertDirectoryToOnePdf_ShouldMergePdfsCorrectly()
     {
         // Arrange
-        var inputDirPath = Path.Combine(Path.GetTempPath(), "MergePdfTest");
+        var inputDirPath = Path.Combine(Path.GetTempPath(), $"MergePdfTest_{Guid.NewGuid()}");
         Directory.CreateDirectory(inputDirPath);
 
         const string outputFileName = "merged.pdf";
@@ -27,7 +27,7 @@ public sealed class MergePdfIntegrationTests
         foreach (var pdfPath in pdfPaths)
         {
             using var pdf = new PdfDocument(new PdfWriter(pdfPath));
-            var document = new Document(pdf);
+            using var document = new Document(pdf);
             document.Add(new Paragraph($"Source: {pdfPath}"));
         }
 
