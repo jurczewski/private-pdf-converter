@@ -1,5 +1,34 @@
 # 🔑🔒 Changelog
 
+## 1.2.1 - 2026.01.24 - Security fixes & standalone executables
+
+### Security
+
+- **security:** fix Magick.NET vulnerability (upgrade to 14.10.2)
+- **security:** pin GitHub Actions to commit SHA for improved supply chain security
+
+### Features
+
+- **feat:** add standalone executable releases for Windows, Linux, and macOS (x64 and ARM64)
+- **feat:** add manual workflow dispatch for building releases on-demand
+
+### Fixes
+
+- **fix:** disable PublishTrimmed to prevent Cocona reflection issues
+- **fix:** improve cross-platform PowerShell compatibility in workflows
+- **fix:** update PackageReleaseNotes to link to changelog on GitHub
+- **fix:** update IsImage method to handle null and empty extensions
+
+### Improvements
+
+- **improve:** replace custom AddFileToPath with built-in Path.Combine
+- **improve:** add unit tests for FileService and standardize test naming
+
+### Documentation
+
+- **docs:** add standalone executable installation instructions
+- **docs:** improve grammar and consistency in documentation
+
 ## 1.2.0 - 2026.01.16 - .NET 10 LTS & auto output naming
 
 ### Features
