@@ -1,4 +1,4 @@
-using ImageMagick;
+﻿using ImageMagick;
 using PrivatePdfConverter.Services;
 using Serilog;
 
@@ -13,7 +13,7 @@ public static class DirToPdf
 
         if (supportedFiles.Count == 0)
         {
-            Log.Logger.Warning("No supported image files found in directory '{Path}'", path);
+            Log.Logger.Warning("No supported image files found in directory '{Path}'. To merge PDF files, use the 'merge' command instead", path);
             return;
         }
 
