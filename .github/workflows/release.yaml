@@ -1,4 +1,4 @@
-name: Deploy Release Executables
+name: Release Standalone Executables
 
 on:
   release:
@@ -56,9 +56,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
         with:
-          dotnet-version: |
-            10.0.x
-            8.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.PROJECT_PATH }}
@@ -67,6 +65,7 @@ jobs:
         run: |
           dotnet publish ${{ env.PROJECT_PATH }} `
             --configuration Release `
+            --framework net10.0 `
             --runtime ${{ matrix.runtime }} `
             --self-contained true `
             --output ${{ env.OUTPUT_DIR }} `
