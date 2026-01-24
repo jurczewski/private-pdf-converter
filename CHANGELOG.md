@@ -1,10 +1,20 @@
 # 🔑🔒 Changelog
 
+## 1.3.0 - 2026.01.24 - .NET 8.0 LTS support
+
+- **feat:** add .NET 8.0 LTS support alongside .NET 10.0 (multi-targeting)
+
+### Chores
+
+- **test:** migrate to `xUnit v3`; broaden test matrix to .NET 6 and .NET 8 LTS; fix rare bug in integration tests
+- **ci:** update workflows to include .NET 8.0
+- **chore:** project cleanup — replace legacy `.sln` with cleaner `.slnx`
+
 ## 1.2.1 - 2026.01.24 - Security fixes & standalone executables
 
 ### Security
 
-- **security:** fix Magick.NET vulnerability (upgrade to 14.10.2)
+- **security:** fix `Magick.NET` vulnerability (upgrade to 14.10.2)
 - **security:** pin GitHub Actions to commit SHA for improved supply chain security
 
 ### Features
@@ -21,8 +31,8 @@
 
 ### Improvements
 
-- **improve:** replace custom AddFileToPath with built-in Path.Combine
-- **improve:** add unit tests for FileService and standardize test naming
+- **improve:** replace custom `AddFileToPath` with built-in Path.Combine
+- **improve:** add unit tests for `FileService` and standardize test naming
 
 ### Documentation
 
@@ -42,7 +52,7 @@
 
 ### Maintenance
 
-- **chore:** bump dependencies: itext and Magick.NET dependencies - fix vulnerability in Magick
+- **chore:** bump dependencies: `itext` and `Magick.NET` dependencies - fix vulnerability in `Magick.NET`
 - **chore:** improve comments and simplify the AddFileToPath method
 - **chore:** update NuGet badge style to match others
 - **fix:** "Buy Me a Coffee" badge link
