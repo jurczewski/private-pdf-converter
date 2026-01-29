@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Cocona;
+using ConsoleAppFramework;
 using PrivatePdfConverter;
 using PrivatePdfConverter.Commands;
 
@@ -8,23 +8,17 @@ var versionString = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyInfo
 Logger.Initialize();
 Logger.LogStart(versionString);
 
-var app = CoconaLiteApp.Create();
+var app = ConsoleApp.Create();
 RegisterCommands(app);
 
-await app.RunAsync();
+await app.RunAsync(args);
 
-static void RegisterCommands(CoconaLiteApp app)
+static void RegisterCommands(ConsoleApp.ConsoleAppBuilder app)
 {
-    app.AddCommand("dir", DirToPdf.ConvertDirectoryToOnePdf)
-        .WithDescription("Convert all images inside directory to single pdf file.");
-    app.AddCommand("merge", MergePdf.ConvertDirectoryToOnePdf)
-        .WithDescription("Merge pdf files from directory into one pdf file.");
-    app.AddCommand("ext", ListValidExt.ListValidExtensions)
-        .WithDescription("List all valid image extensions.");
-    app.AddCommand("img", ImgToPdf.ConvertImageToOnePdf)
-        .WithDescription("Convert single image to single pdf file.");
-    app.AddCommand("encrypt", EncryptPdf.EncryptPdfWithPassword)
-        .WithDescription("Encrypt pdf file with a password.");
-    app.AddCommand("logo", AddLogoToPdf.Run)
-        .WithDescription("Add an image/logo/watermark to a every page of pdf file.");
+    app.Add("dir", DirToPdf.ConvertDirectoryToOnePdf);
+    app.Add("merge", MergePdf.ConvertDirectoryToOnePdf);
+    app.Add("ext", ListValidExt.ListValidExtensions);
+    app.Add("img", ImgToPdf.ConvertImageToOnePdf);
+    app.Add("encrypt", EncryptPdf.EncryptPdfWithPassword);
+    app.Add("logo", AddLogoToPdf.Run);
 }

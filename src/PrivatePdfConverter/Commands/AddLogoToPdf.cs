@@ -1,4 +1,4 @@
-using iText.IO.Image;
+﻿using iText.IO.Image;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas;
 using iText.Layout;
@@ -10,6 +10,15 @@ namespace PrivatePdfConverter.Commands;
 
 public static class AddLogoToPdf
 {
+    /// <summary>
+    /// Add a logo/image watermark to every page of the given PDF.
+    /// </summary>
+    /// <param name="path">Path to the source PDF file.</param>
+    /// <param name="logoPath">Path to the logo/image file to stamp.</param>
+    /// <param name="position">One of: top-left, top-right, bottom-left, bottom-right.</param>
+    /// <param name="scale">Optional scale percentage (e.g. 25 for 25%).</param>
+    /// <param name="opacity">Optional opacity percentage (0-100).</param>
+    /// <param name="output">Optional output file name (without extension).</param>
     public static void Run(string path, string logoPath, string position, int? scale, int? opacity, string? output)
     {
         if (!File.Exists(path))

@@ -6,6 +6,11 @@ namespace PrivatePdfConverter.Commands;
 
 public static class DirToPdf
 {
+    /// <summary>
+    /// Convert all images in the specified path into a single PDF file.
+    /// </summary>
+    /// <param name="path">Path to the directory containing images.</param>
+    /// <param name="output">Optional output file name (without extension).</param>
     public static void ConvertDirectoryToOnePdf(string path, string? output)
     {
         var filesPaths = path.LoadFilePathsFromDirectory();

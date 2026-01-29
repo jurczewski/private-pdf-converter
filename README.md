@@ -163,7 +163,7 @@ dotnet build
 
 ### 🔗 Dependencies
 
-Based on micro-framework [Cocona](https://github.com/mayuki/Cocona).
+Based on CLI framework [ConsoleAppFramework](https://github.com/Cysharp/ConsoleAppFramework). Zero external dependencies, zero reflection, high performance and fastest startup time.
 
 ### 📈 Sonar statistics
 

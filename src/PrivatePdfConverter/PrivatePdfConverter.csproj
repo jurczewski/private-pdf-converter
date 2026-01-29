@@ -31,7 +31,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cocona.Lite" />
+        <PackageReference Include="ConsoleAppFramework" />
         <PackageReference Include="itext" />
         <PackageReference Include="itext.bouncy-castle-adapter" />
         <PackageReference Include="Magick.NET-Q8-AnyCPU" />

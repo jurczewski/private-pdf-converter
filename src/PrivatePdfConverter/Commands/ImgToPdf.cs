@@ -1,4 +1,4 @@
-using ImageMagick;
+﻿using ImageMagick;
 using PrivatePdfConverter.Services;
 using Serilog;
 
@@ -6,6 +6,11 @@ namespace PrivatePdfConverter.Commands;
 
 public static class ImgToPdf
 {
+    /// <summary>
+    /// Convert a single image file to a PDF.
+    /// </summary>
+    /// <param name="path">Path to the image file.</param>
+    /// <param name="output">Optional output file name (without extension).</param>
     public static void ConvertImageToOnePdf(string path, string? output)
     {
         if (!Path.GetExtension(path).IsImage())

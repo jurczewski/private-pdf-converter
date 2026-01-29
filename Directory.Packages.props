@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageVersion Include="AutoFixture" Version="4.18.1" />
     <PackageVersion Include="AwesomeAssertions" Version="9.3.0" />
-    <PackageVersion Include="Cocona.Lite" Version="2.2.0" />
+    <PackageVersion Include="ConsoleAppFramework" Version="5.7.13" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="itext" Version="9.5.0" />
     <PackageVersion Include="itext.bouncy-castle-adapter" Version="9.5.0" />

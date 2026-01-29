@@ -1,4 +1,4 @@
-using iText.Kernel.Pdf;
+﻿using iText.Kernel.Pdf;
 using PrivatePdfConverter.Services;
 using Serilog;
 
@@ -6,6 +6,11 @@ namespace PrivatePdfConverter.Commands;
 
 public static class MergePdf
 {
+    /// <summary>
+    /// Merge all PDF files in the specified path into a single PDF file.
+    /// </summary>
+    /// <param name="path">Path to the directory containing PDF files.</param>
+    /// <param name="output">Optional output file name (without extension).</param>
     public static void ConvertDirectoryToOnePdf(string path, string? output)
     {
         var filesPaths = path.LoadFilePathsFromDirectory("*.pdf");

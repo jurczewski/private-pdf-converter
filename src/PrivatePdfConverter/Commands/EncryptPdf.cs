@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using iText.Kernel.Pdf;
 using PrivatePdfConverter.Services;
 using Serilog;
@@ -7,6 +7,12 @@ namespace PrivatePdfConverter.Commands;
 
 public static class EncryptPdf
 {
+    /// <summary>
+    /// Encrypt a PDF file using the provided password.
+    /// </summary>
+    /// <param name="path">Path to the source PDF file.</param>
+    /// <param name="password">Password to apply to the PDF.</param>
+    /// <param name="output">Optional output file name (without extension).</param>
     public static void EncryptPdfWithPassword(string path, string password, string? output)
     {
         Log.Logger.Information("Read 1 file with name: {FileName}, Full path: '{Path}'", Path.GetFileName(path), path);
