@@ -3,6 +3,7 @@
 [![Build](https://img.shields.io/github/actions/workflow/status/jurczewski/private-pdf-converter/build.yaml?branch=master)](https://github.com/jurczewski/private-pdf-converter/actions/workflows/build.yaml)
 [![NuGet version (PrivatePdfConverter)](https://img.shields.io/nuget/v/PrivatePdfConverter.svg)](https://www.nuget.org/packages/PrivatePdfConverter/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=jurczewski_private-pdf-converter&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jurczewski_private-pdf-converter)
 [![Linkedin](https://img.shields.io/badge/Linkedin-0882bd?logo=linkedin)](https://www.linkedin.com/in/jurczewski/)
 [![100 - Commitów](https://img.shields.io/badge/100-Commitów-2ea44f)](https://100commitow.pl/)
 
