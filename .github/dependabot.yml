@@ -8,7 +8,6 @@ updates:
       time: "08:00"
       timezone: "Europe/Warsaw"
     open-pull-requests-limit: 5
-    target-branch: "work"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -18,4 +17,3 @@ updates:
       time: "08:00"
       timezone: "Europe/Warsaw"
     open-pull-requests-limit: 5
-    target-branch: "work"
