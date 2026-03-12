@@ -1,3 +1,4 @@
+# Manual run (on-demand): GitHub UI -> Insights -> Dependency graph -> Dependabot -> Check for updates
 version: 2
 updates:
   - package-ecosystem: "nuget"
