@@ -1,17 +1,17 @@
-using System.Text;
+﻿using System.Text;
 using iText.Kernel.Pdf;
 using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public sealed class EncryptPdfTests : IDisposable
+public sealed class EncryptPdfIntegrationTests : IDisposable
 {
     private const string EncryptedPdfName = "encrypted.pdf";
     private readonly string _samplePdfPath;
     private readonly string _encryptedPdfPath;
     private readonly string _password;
 
-    public EncryptPdfTests()
+    public EncryptPdfIntegrationTests()
     {
         var fixture = new Fixture();
         _password = fixture.Create<string>();
@@ -37,7 +37,7 @@ public sealed class EncryptPdfTests : IDisposable
         CreateSamplePdf(_samplePdfPath);
 
         // Act
-        EncryptPdf.EncryptPdfWithPassword(_samplePdfPath, _password, EncryptedPdfName);
+        EncryptPdf.EncryptPdfWithPassword(_samplePdfPath, _password, _encryptedPdfPath);
 
         // Assert
         // Try to open the encrypted PDF with the password

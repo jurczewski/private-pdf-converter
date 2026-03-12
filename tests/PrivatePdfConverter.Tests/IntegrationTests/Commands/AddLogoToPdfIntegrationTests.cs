@@ -1,4 +1,4 @@
-using ImageMagick;
+﻿using ImageMagick;
 using iText.Kernel.Pdf;
 using PrivatePdfConverter.Commands;
 
@@ -29,7 +29,7 @@ public sealed class AddLogoToPdfIntegrationTests : IDisposable
         CreateSampleLogo(_logoPath);
 
         // Act
-        AddLogoToPdf.Run(_samplePdfPath, _logoPath, "top-left", 25, 100, OutputPdfFileName);
+        AddLogoToPdf.Run(_samplePdfPath, _logoPath, "top-left", 25, 100, _outputPdfPath);
 
         // Assert
         using var pdfReader = new PdfReader(_outputPdfPath);
