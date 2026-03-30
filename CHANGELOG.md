@@ -1,5 +1,11 @@
 # 🔑🔒 Changelog
 
+## 1.3.1 - 2026.03.30 - ConsoleAppFramework & dependency automation
+
+- **chore:** migrate CLI framework from Cocona to ConsoleAppFramework. Zero external dependencies, zero reflection, high performance and fastest startup time.
+- **chore:** add Dependabot for NuGet and GitHub Actions;
+- **security:** bump `Magick.NET` to 14.11.0 (CVE fixes) & bump `checkout@v6`, `setup-dotnet@v5`
+
 ## 1.3.0 - 2026.01.24 - .NET 8.0 LTS support
 
 - **feat:** add .NET 8.0 LTS support alongside .NET 10.0 (multi-targeting)
