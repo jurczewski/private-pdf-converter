@@ -29,7 +29,7 @@ public static class DirToPdf
         }
         catch (InvalidDataException ex)
         {
-            Log.Logger.Error(ex.Message);
+            Log.Logger.Error(ex, ex.Message);
             return;
         }
 
