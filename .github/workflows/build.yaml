@@ -17,6 +17,8 @@ jobs:
           dotnet-version: |
             10.0.x
             8.0.x
+      - name: Install ImageMagick
+        run: sudo apt-get install -y imagemagick libmagickcore-dev libmagickwand-dev
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
