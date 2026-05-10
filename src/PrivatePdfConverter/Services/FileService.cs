@@ -5,6 +5,8 @@ namespace PrivatePdfConverter.Services;
 
 public static class FileService
 {
+    // Conservative defaults chosen to allow typical high-resolution images
+    // while rejecting obviously pathological dimensions before full decode.
     private const ulong MaxWidth = 10_000;
     private const ulong MaxHeight = 10_000;
     private const ulong MaxArea = 100_000_000;
@@ -17,7 +19,7 @@ public static class FileService
     public static bool IsImage(this string? extension)
         => !string.IsNullOrEmpty(extension) && ValidExtensions.Contains(extension.ToLower()[1..]);
 
-    public static MagickImage LoadValidatedImage(string path)
+    public static MagickImage? LoadValidatedImage(string path)
     {
         using var headerImage = new MagickImage();
         headerImage.Ping(path);
@@ -28,13 +30,19 @@ public static class FileService
 
         if (width == 0 || height == 0)
         {
-            throw new InvalidDataException($"Image '{path}' has invalid dimensions {width}x{height}.");
+            Log.Logger.Error("Image '{Path}' has invalid dimensions {Width}x{Height}.", path, width, height);
+            return null;
         }
 
-        if ((ulong)width > MaxWidth || (ulong)height > MaxHeight || area > MaxArea)
+        if (width > MaxWidth || height > MaxHeight || area > MaxArea)
         {
-            throw new InvalidDataException(
-                $"Image '{path}' exceeds the supported limits ({width}x{height}, area {area}).");
+            Log.Logger.Error(
+                "Image '{Path}' exceeds the supported limits ({Width}x{Height}, area {Area}).",
+                path,
+                width,
+                height,
+                area);
+            return null;
         }
 
         return new MagickImage(path);

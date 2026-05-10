@@ -23,16 +23,13 @@ public static class ImgToPdf
         Log.Logger.Information("Read 1 file with name: {FileName}, Full path: '{Path}'", Path.GetFileName(path), path);
 
         using var images = new MagickImageCollection();
-        try
+        var image = FileService.LoadValidatedImage(path);
+        if (image is null)
         {
-            images.Add(FileService.LoadValidatedImage(path));
-        }
-        catch (InvalidDataException ex)
-        {
-            Log.Logger.Error(ex, ex.Message);
             return;
         }
 
+        images.Add(image);
         SaveAsPdf(path, images, output);
     }
 
