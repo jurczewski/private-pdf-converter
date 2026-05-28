@@ -44,4 +44,35 @@ public sealed class DirToPdfIntegrationUnitTests
         // Clean up
         Directory.Delete(inputDirPath, true);
     }
+
+    [Fact]
+    public void ConvertDirectoryToOnePdf_ShouldNotCreatePdf_WhenImageExceedsLimits()
+    {
+        // End-to-end smoke: dir command must not write a PDF when LoadValidatedImage rejects input.
+        var inputDirPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        const string outputFileName = "final.pdf";
+        var outputPath = Path.Combine(inputDirPath, outputFileName);
+        Directory.CreateDirectory(inputDirPath);
+
+        var oversizedImagePath = Path.Combine(inputDirPath, "oversized.png");
+
+        try
+        {
+            using (var image = new MagickImage(MagickColors.Red, 10_001, 100))
+            {
+                image.Write(oversizedImagePath);
+            }
+
+            DirToPdf.ConvertDirectoryToOnePdf(inputDirPath, outputFileName);
+
+            File.Exists(outputPath).Should().BeFalse();
+        }
+        finally
+        {
+            if (Directory.Exists(inputDirPath))
+            {
+                Directory.Delete(inputDirPath, true);
+            }
+        }
+    }
 }

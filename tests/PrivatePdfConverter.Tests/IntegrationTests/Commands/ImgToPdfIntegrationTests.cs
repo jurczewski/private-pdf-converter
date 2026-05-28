@@ -30,4 +30,36 @@ public sealed class ImgToPdfIntegrationTests
         File.Delete(inputFilePath);
         File.Delete(outputPdfPath);
     }
+
+    [Fact]
+    public void ConvertImageToOnePdf_ShouldNotCreatePdf_WhenImageExceedsLimits()
+    {
+        // End-to-end smoke: command must not write a PDF when LoadValidatedImage rejects input.
+        var inputFilePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.png");
+        var expectedOutputPath = Path.ChangeExtension(inputFilePath, ".pdf");
+
+        try
+        {
+            using (var image = new MagickImage(MagickColors.Red, 10_001, 100))
+            {
+                image.Write(inputFilePath);
+            }
+
+            ImgToPdf.ConvertImageToOnePdf(inputFilePath, null);
+
+            File.Exists(expectedOutputPath).Should().BeFalse();
+        }
+        finally
+        {
+            if (File.Exists(inputFilePath))
+            {
+                File.Delete(inputFilePath);
+            }
+
+            if (File.Exists(expectedOutputPath))
+            {
+                File.Delete(expectedOutputPath);
+            }
+        }
+    }
 }
