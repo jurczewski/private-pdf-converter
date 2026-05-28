@@ -1,9 +1,16 @@
+using ImageMagick;
 using Serilog;
 
 namespace PrivatePdfConverter.Services;
 
 public static class FileService
 {
+    // Conservative defaults chosen to allow typical high-resolution images
+    // while rejecting obviously pathological dimensions before full decode.
+    private const ulong MaxWidth = 10_000;
+    private const ulong MaxHeight = 10_000;
+    private const ulong MaxArea = 100_000_000;
+
     public static IEnumerable<string> ValidExtensions { get; } =
     [
         "jpg", "jpeg", "bmp", "gif", "png", "tif", "tiff", "webp"
@@ -11,6 +18,35 @@ public static class FileService
 
     public static bool IsImage(this string? extension)
         => !string.IsNullOrEmpty(extension) && ValidExtensions.Contains(extension.ToLower()[1..]);
+
+    public static MagickImage? LoadValidatedImage(string path)
+    {
+        using var headerImage = new MagickImage();
+        headerImage.Ping(path);
+
+        var width = headerImage.Width;
+        var height = headerImage.Height;
+        var area = (ulong)width * height;
+
+        if (width == 0 || height == 0)
+        {
+            Log.Logger.Error("Image '{Path}' has invalid dimensions {Width}x{Height}.", path, width, height);
+            return null;
+        }
+
+        if (width > MaxWidth || height > MaxHeight || area > MaxArea)
+        {
+            Log.Logger.Error(
+                "Image '{Path}' exceeds the supported limits ({Width}x{Height}, area {Area}).",
+                path,
+                width,
+                height,
+                area);
+            return null;
+        }
+
+        return new MagickImage(path);
+    }
 
     public static IEnumerable<string> LoadFilePathsFromDirectory(this string path, string searchPattern = "*")
     {

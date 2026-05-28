@@ -23,7 +23,16 @@ public static class DirToPdf
         }
 
         using var images = new MagickImageCollection();
-        supportedFiles.ForEach(x => images.Add(new MagickImage(x)));
+        foreach (var file in supportedFiles)
+        {
+            var image = FileService.LoadValidatedImage(file);
+            if (image is null)
+            {
+                return;
+            }
+
+            images.Add(image);
+        }
 
         SaveAsPdf(path, images, output);
     }
