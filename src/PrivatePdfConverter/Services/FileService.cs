@@ -30,14 +30,14 @@ public static class FileService
 
         if (width == 0 || height == 0)
         {
-            Log.Logger.Error("Image '{Path}' has invalid dimensions {Width}x{Height}.", path, width, height);
+            Log.Logger.Error("Image '{Path}' has invalid dimensions {Width}x{Height}", path, width, height);
             return null;
         }
 
         if (width > MaxWidth || height > MaxHeight || area > MaxArea)
         {
             Log.Logger.Error(
-                "Image '{Path}' exceeds the supported limits ({Width}x{Height}, area {Area}).",
+                "Image '{Path}' exceeds the supported limits ({Width}x{Height}, area {Area})",
                 path,
                 width,
                 height,
