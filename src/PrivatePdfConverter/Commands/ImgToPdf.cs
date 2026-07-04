@@ -11,7 +11,7 @@ public static class ImgToPdf
     /// </summary>
     /// <param name="path">Path to the image file.</param>
     /// <param name="output">Optional output file name (without extension).</param>
-    public static void ConvertImageToOnePdf(string path, string? output)
+    public static void ConvertImageToOnePdf(string path, string? output = null)
     {
         if (!Path.GetExtension(path).IsImage())
         {

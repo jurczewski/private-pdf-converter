@@ -11,7 +11,7 @@ public static class DirToPdf
     /// </summary>
     /// <param name="path">Path to the directory containing images.</param>
     /// <param name="output">Optional output file name (without extension).</param>
-    public static void ConvertDirectoryToOnePdf(string path, string? output)
+    public static void ConvertDirectoryToOnePdf(string path, string? output = null)
     {
         var filesPaths = path.LoadFilePathsFromDirectory();
         var supportedFiles = filesPaths.Where(x => Path.GetExtension(x).IsImage()).ToList();

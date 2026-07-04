@@ -19,7 +19,7 @@ public static class AddLogoToPdf
     /// <param name="scale">Optional scale percentage (e.g. 25 for 25%).</param>
     /// <param name="opacity">Optional opacity percentage (0-100).</param>
     /// <param name="output">Optional output file name (without extension).</param>
-    public static void Run(string path, string logoPath, string position, int? scale, int? opacity, string? output)
+    public static void Run(string path, string logoPath, string position, int? scale = null, int? opacity = null, string? output = null)
     {
         if (!File.Exists(path))
         {

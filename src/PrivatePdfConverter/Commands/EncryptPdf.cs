@@ -13,7 +13,7 @@ public static class EncryptPdf
     /// <param name="path">Path to the source PDF file.</param>
     /// <param name="password">Password to apply to the PDF.</param>
     /// <param name="output">Optional output file name (without extension).</param>
-    public static void EncryptPdfWithPassword(string path, string password, string? output)
+    public static void EncryptPdfWithPassword(string path, string password, string? output = null)
     {
         Log.Logger.Information("Read 1 file with name: {FileName}, Full path: '{Path}'", Path.GetFileName(path), path);
         var outputFileName = output.PrepareOutputFileName(path);

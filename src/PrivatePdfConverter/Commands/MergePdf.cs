@@ -11,7 +11,7 @@ public static class MergePdf
     /// </summary>
     /// <param name="path">Path to the directory containing PDF files.</param>
     /// <param name="output">Optional output file name (without extension).</param>
-    public static void ConvertDirectoryToOnePdf(string path, string? output)
+    public static void ConvertDirectoryToOnePdf(string path, string? output = null)
     {
         var filesPaths = path.LoadFilePathsFromDirectory("*.pdf");
         var pdfs = filesPaths.Select(x => new PdfDocument(new PdfReader(x)));

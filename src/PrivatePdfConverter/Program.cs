@@ -12,6 +12,7 @@ var app = ConsoleApp.Create();
 RegisterCommands(app);
 
 await app.RunAsync(args);
+return;
 
 static void RegisterCommands(ConsoleApp.ConsoleAppBuilder app)
 {
