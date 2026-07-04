@@ -58,6 +58,20 @@ public sealed class FileServiceUnitTests
     }
 
     [Fact]
+    public void PrepareOutputFileName_WithNullOutput_ShouldAppendExportSuffix_WhenSourceIsPdf()
+    {
+        // Arrange
+        string? output = null;
+        const string sourcePath = "report.pdf";
+
+        // Act
+        var result = output.PrepareOutputFileName(sourcePath);
+
+        // Assert
+        result.Should().Be("report_export.pdf");
+    }
+
+    [Fact]
     public void PrepareOutputFileName_WithNullOutput_ShouldDeriveFromSourcePath()
     {
         // Arrange

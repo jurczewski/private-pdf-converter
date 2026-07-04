@@ -1,4 +1,4 @@
-using ImageMagick;
+﻿using ImageMagick;
 using Serilog;
 
 namespace PrivatePdfConverter.Services;
@@ -60,12 +60,15 @@ public static class FileService
 
     /// <summary>
     /// Prepares the output file name based on the provided output or source path.
-    /// If `output` is provided, use it (and ensure .pdf). If not provided, derive the name from the `sourcePath` filename.
-    /// Example: sourcePath = "C:\\images\\photo.jpg" -> "photo.pdf"
+    /// If <paramref name="output"/> is provided, use it (and ensure .pdf extension).
+    /// If not provided, derive the name from the <paramref name="sourcePath"/> filename.
+    /// When the derived name would equal the source file (e.g. source is already a PDF),
+    /// appends "_export" to avoid overwriting the input file.
+    /// Examples: "C:\\images\\photo.jpg" -> "photo.pdf", "report.pdf" -> "report_export.pdf"
     /// </summary>
-    /// <param name="output"></param>
-    /// <param name="sourcePath"></param>
-    /// <returns></returns>
+    /// <param name="output">The desired output file name.</param>
+    /// <param name="sourcePath">The path of the source file.</param>
+    /// <returns>The prepared output file name.</returns>
     public static string PrepareOutputFileName(this string? output, string sourcePath)
     {
         if (!string.IsNullOrEmpty(output))
@@ -75,9 +78,13 @@ public static class FileService
                 : output + ".pdf";
         }
 
-        // derive from the source path filename
         var sourceFileName = Path.GetFileNameWithoutExtension(sourcePath);
-        var outputFileName = string.IsNullOrEmpty(sourceFileName) ? "output" : sourceFileName;
-        return outputFileName + ".pdf";
+        var baseName = string.IsNullOrEmpty(sourceFileName) ? "output" : sourceFileName;
+        var derived = baseName + ".pdf";
+
+        // prevent read+write on the same file when source is already a PDF
+        return string.Equals(derived, Path.GetFileName(sourcePath), StringComparison.OrdinalIgnoreCase)
+            ? baseName + "_export.pdf"
+            : derived;
     }
 }
