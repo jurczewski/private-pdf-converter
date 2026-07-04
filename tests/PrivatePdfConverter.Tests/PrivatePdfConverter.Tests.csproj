@@ -10,7 +10,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoFixture" />
         <PackageReference Include="AwesomeAssertions" />
         <PackageReference Include="coverlet.collector">
           <PrivateAssets>all</PrivateAssets>
