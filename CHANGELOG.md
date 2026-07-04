@@ -1,5 +1,19 @@
 # 🔑🔒 Changelog
 
+## 1.3.2 - 2026.07.04 - Image validation, safe output naming & path fixes
+
+- **feat:** validate image bounds (width/height) via metadata before full decode in `img` and `dir` commands — prevents decoding malformed or oversized images
+- **fix:** when source file is a PDF and no output name is given, save as `filename_export.pdf` instead of overwriting the source
+- **fix:** normalize source path — strip trailing slashes to avoid path resolution issues
+- **fix:** optional args handling in all commands (ConsoleAppFramework regression)
+
+### Maintaince
+
+- **fix:** install missing ImageMagick native libs on `ubuntu-24.04` CI runner
+- **test:** replace direct command calls with CLI subprocess integration tests; add coverage for `LoadValidatedImage` size limits
+- **security:** bump NuGet and GitHub Actions dependencies
+- **chore:** remove unused packages; hide build assets from IDE in csproj
+
 ## 1.3.1 - 2026.03.30 - ConsoleAppFramework & dependency automation
 
 - **chore:** migrate CLI framework from Cocona to ConsoleAppFramework. Zero external dependencies, zero reflection, high performance and fastest startup time.
