@@ -1,61 +1,50 @@
 ﻿using System.Text;
 using iText.Kernel.Pdf;
-using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public sealed class EncryptPdfIntegrationTests : IDisposable
+public sealed class EncryptPdfIntegrationTests
 {
-    private const string EncryptedPdfName = "encrypted.pdf";
-    private readonly string _samplePdfPath;
-    private readonly string _encryptedPdfPath;
-    private readonly string _password;
-
-    public EncryptPdfIntegrationTests()
-    {
-        var fixture = new Fixture();
-        _password = fixture.Create<string>();
-
-        var samplePdfName = fixture.Create<string>();
-        _samplePdfPath = Path.Combine(Path.GetTempPath(), samplePdfName);
-        _encryptedPdfPath = Path.Combine(Path.GetTempPath(), EncryptedPdfName);
-    }
-
-    public void Dispose()
-    {
-        if (File.Exists(_samplePdfPath))
-            File.Delete(_samplePdfPath);
-
-        if (File.Exists(_encryptedPdfPath))
-            File.Delete(_encryptedPdfPath);
-    }
-
     [Fact]
-    public void EncryptPdfWithPassword_ShouldBehaveCorrectly()
+    public void ShouldCreatePasswordProtectedPdf_WhenOutputIsOmitted()
     {
-        // Arrange
-        CreateSamplePdf(_samplePdfPath);
+        var inputPdfPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.pdf");
+        const string password = "test-password-123";
+        var outputPdfPath = Path.Combine(
+            Path.GetDirectoryName(inputPdfPath)!,
+            Path.GetFileNameWithoutExtension(inputPdfPath) + "_export.pdf");
 
-        // Act
-        EncryptPdf.EncryptPdfWithPassword(_samplePdfPath, _password, _encryptedPdfPath);
-
-        // Assert
-        // Try to open the encrypted PDF with the password
-        var openEncryptedPdf = () =>
+        try
         {
-            using var pdfReader = new PdfReader(_encryptedPdfPath, new ReaderProperties().SetPassword(Encoding.UTF8.GetBytes(_password)));
-            using var pdfDocument = new PdfDocument(pdfReader);
-        };
+            CreateSamplePdf(inputPdfPath);
 
-        openEncryptedPdf.Should().NotThrow("because the encrypted PDF should open with the correct password");
-        File.Exists(_encryptedPdfPath).Should().BeTrue("because the encrypted PDF should be created");
+            var result = CliTestHelper.Run(
+                "encrypt",
+                "--path", inputPdfPath,
+                "--password", password);
+
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(outputPdfPath).Should().BeTrue();
+
+            var openWithCorrectPassword = () =>
+            {
+                using var reader = new PdfReader(outputPdfPath, new ReaderProperties().SetPassword(Encoding.UTF8.GetBytes(password)));
+                using var pdf = new PdfDocument(reader);
+            };
+            openWithCorrectPassword.Should().NotThrow();
+        }
+        finally
+        {
+            if (File.Exists(inputPdfPath)) File.Delete(inputPdfPath);
+            if (File.Exists(outputPdfPath)) File.Delete(outputPdfPath);
+        }
     }
 
     private static void CreateSamplePdf(string filePath)
     {
-        using var pdfWriter = new PdfWriter(filePath);
-        using var pdfDocument = new PdfDocument(pdfWriter);
-        var document = new iText.Layout.Document(pdfDocument);
-        document.Add(new iText.Layout.Element.Paragraph("This is a sample PDF."));
+        using var writer = new PdfWriter(filePath);
+        using var pdf = new PdfDocument(writer);
+        var doc = new iText.Layout.Document(pdf);
+        doc.Add(new iText.Layout.Element.Paragraph("Sample PDF for encryption test."));
     }
 }

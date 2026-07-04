@@ -1,51 +1,39 @@
 ﻿using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
 public sealed class MergePdfIntegrationTests
 {
     [Fact]
-    public void ConvertDirectoryToOnePdf_ShouldMergePdfsCorrectly()
+    public void ShouldCreateMergedPdf_FromPdfsInDirectory()
     {
-        // Arrange
-        var inputDirPath = Path.Combine(Path.GetTempPath(), $"MergePdfTest_{Guid.NewGuid()}");
+        var inputDirPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(inputDirPath);
+        const string outputName = "merged";
+        var outputPdfPath = Path.Combine(inputDirPath, outputName + ".pdf");
 
-        const string outputFileName = "merged.pdf";
-
-        // Create dummy PDF files
-        var pdfPaths = new[]
+        try
         {
-            Path.Combine(inputDirPath, "pdf1.pdf"),
-            Path.Combine(inputDirPath, "pdf2.pdf"),
-            Path.Combine(inputDirPath, "pdf3.pdf")
-        };
+            foreach (var pdfName in new[] { "pdf1.pdf", "pdf2.pdf", "pdf3.pdf" })
+            {
+                using var pdf = new PdfDocument(new PdfWriter(Path.Combine(inputDirPath, pdfName)));
+                using var layout = new Document(pdf);
+                layout.Add(new Paragraph(pdfName));
+            }
 
-        foreach (var pdfPath in pdfPaths)
-        {
-            using var pdf = new PdfDocument(new PdfWriter(pdfPath));
-            using var document = new Document(pdf);
-            document.Add(new Paragraph($"Source: {pdfPath}"));
-        }
+            var result = CliTestHelper.Run("merge", "--path", inputDirPath, "--output", outputName);
 
-        // Act
-        MergePdf.ConvertDirectoryToOnePdf(inputDirPath, outputFileName);
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(outputPdfPath).Should().BeTrue();
 
-        // Assert
-        // Check if the merged PDF file is created
-        var outputFile = Path.Combine(inputDirPath, outputFileName);
-        File.Exists(outputFile).Should().BeTrue();
-
-        // Check if the merged PDF contains the correct number of pages
-        using (var mergedPdf = new PdfDocument(new PdfReader(outputFile)))
-        {
+            using var mergedPdf = new PdfDocument(new PdfReader(outputPdfPath));
             mergedPdf.GetNumberOfPages().Should().Be(3);
         }
-
-        // Clean up
-        Directory.Delete(inputDirPath, true);
+        finally
+        {
+            if (Directory.Exists(inputDirPath)) Directory.Delete(inputDirPath, true);
+        }
     }
 }

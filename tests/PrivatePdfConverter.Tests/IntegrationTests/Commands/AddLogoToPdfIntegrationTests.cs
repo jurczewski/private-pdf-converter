@@ -1,67 +1,101 @@
 ﻿using ImageMagick;
 using iText.Kernel.Pdf;
-using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public sealed class AddLogoToPdfIntegrationTests : IDisposable
+public sealed class AddLogoToPdfIntegrationTests
 {
-    private const string OutputPdfFileName = "output.pdf";
-    private readonly string _samplePdfPath;
-    private readonly string _logoPath;
-    private readonly string _outputPdfPath;
-
-    public AddLogoToPdfIntegrationTests()
+    [Fact]
+    public void ShouldAddLogoToPdf_WithExplicitScaleAndOpacity()
     {
-        var fixture = new Fixture();
-        var samplePdfName = fixture.Create<string>();
-        _samplePdfPath = Path.Combine(Path.GetTempPath(), samplePdfName + ".pdf");
-        _outputPdfPath = Path.Combine(Path.GetTempPath(), OutputPdfFileName);
-        _logoPath = Path.Combine(Path.GetTempPath(), "logo.png");
-    }
+        var inputPdfPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.pdf");
+        var logoPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.png");
+        var outputName = Guid.NewGuid().ToString("N");
+        var outputPdfPath = Path.Combine(Path.GetDirectoryName(inputPdfPath)!, outputName + ".pdf");
 
+        try
+        {
+            CreateSamplePdf(inputPdfPath);
+            CreateLogoImage(logoPath);
+
+            var result = CliTestHelper.Run(
+                "logo",
+                "--path", inputPdfPath,
+                "--logo-path", logoPath,
+                "--position", "top-left",
+                "--scale", "25",
+                "--opacity", "50",
+                "--output", outputName);
+
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(outputPdfPath).Should().BeTrue();
+
+            using var reader = new PdfReader(outputPdfPath);
+            using var pdf = new PdfDocument(reader);
+            var xObject = pdf.GetPage(1)
+                .GetPdfObject()
+                .GetAsDictionary(PdfName.Resources)
+                ?.GetAsDictionary(PdfName.XObject)
+                ?.GetAsStream(new PdfName("Im1"));
+            xObject.Should().NotBeNull("because the logo should be embedded even when scale and opacity are specified");
+        }
+        finally
+        {
+            if (File.Exists(inputPdfPath)) File.Delete(inputPdfPath);
+            if (File.Exists(logoPath)) File.Delete(logoPath);
+            if (File.Exists(outputPdfPath)) File.Delete(outputPdfPath);
+        }
+    }
 
     [Fact]
-    public void Run_AddsLogoToPdf_ChecksIfLogoPresent()
+    public void ShouldAddLogoToPdf_WhenAllOptionalsAreOmitted()
     {
-        // Arrange
-        CreateSamplePdf(_samplePdfPath);
-        CreateSampleLogo(_logoPath);
+        var inputPdfPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.pdf");
+        var logoPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.png");
+        var outputPdfPath = Path.Combine(
+            Path.GetDirectoryName(inputPdfPath)!,
+            Path.GetFileNameWithoutExtension(inputPdfPath) + "_export.pdf");
 
-        // Act
-        AddLogoToPdf.Run(_samplePdfPath, _logoPath, "top-left", 25, 100, _outputPdfPath);
+        try
+        {
+            CreateSamplePdf(inputPdfPath);
+            CreateLogoImage(logoPath);
 
-        // Assert
-        using var pdfReader = new PdfReader(_outputPdfPath);
-        using var pdfDocument = new PdfDocument(pdfReader);
-        const int pageNumber = 1; // Assuming the logo is added to the first page
-        var page = pdfDocument.GetPage(pageNumber);
-        var imageXObject = page.GetPdfObject().GetAsDictionary(PdfName.Resources)?.GetAsDictionary(PdfName.XObject)?.GetAsStream(new PdfName("Im1"));
+            var result = CliTestHelper.Run(
+                "logo",
+                "--path", inputPdfPath,
+                "--logo-path", logoPath,
+                "--position", "top-left");
 
-        imageXObject.Should().NotBeNull("because the logo should be present in the PDF");
-    }
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(outputPdfPath).Should().BeTrue();
 
-    public void Dispose()
-    {
-        if (File.Exists(_samplePdfPath))
-            File.Delete(_samplePdfPath);
-
-        if (File.Exists(_outputPdfPath))
-            File.Delete(_outputPdfPath);
-
-        if (File.Exists(_logoPath))
-            File.Delete(_logoPath);
+            using var reader = new PdfReader(outputPdfPath);
+            using var pdf = new PdfDocument(reader);
+            var xObject = pdf.GetPage(1)
+                .GetPdfObject()
+                .GetAsDictionary(PdfName.Resources)
+                ?.GetAsDictionary(PdfName.XObject)
+                ?.GetAsStream(new PdfName("Im1"));
+            xObject.Should().NotBeNull("because the logo should be embedded as an XObject in the PDF");
+        }
+        finally
+        {
+            if (File.Exists(inputPdfPath)) File.Delete(inputPdfPath);
+            if (File.Exists(logoPath)) File.Delete(logoPath);
+            if (File.Exists(outputPdfPath)) File.Delete(outputPdfPath);
+        }
     }
 
     private static void CreateSamplePdf(string filePath)
     {
-        using var pdfWriter = new PdfWriter(filePath);
-        using var pdfDocument = new PdfDocument(pdfWriter);
-        var document = new iText.Layout.Document(pdfDocument);
-        document.Add(new iText.Layout.Element.Paragraph("This is a sample PDF."));
+        using var writer = new PdfWriter(filePath);
+        using var pdf = new PdfDocument(writer);
+        var doc = new iText.Layout.Document(pdf);
+        doc.Add(new iText.Layout.Element.Paragraph("Sample PDF for logo test."));
     }
 
-    private static void CreateSampleLogo(string filePath)
+    private static void CreateLogoImage(string filePath)
     {
         using var image = new MagickImage(MagickColors.Red, 100, 100);
         image.Write(filePath);

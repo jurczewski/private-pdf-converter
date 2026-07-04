@@ -1,78 +1,57 @@
 using ImageMagick;
-using PrivatePdfConverter.Commands;
 
 namespace PrivatePdfConverter.Tests.IntegrationTests.Commands;
 
-public sealed class DirToPdfIntegrationUnitTests
+public sealed class DirToPdfIntegrationTests
 {
     [Fact]
-    public void ConvertDirectoryToOnePdf_ShouldBehaveCorrectly()
+    public void ShouldCreatePdf_FromImagesInDirectory()
     {
-        // Arrange
-        var fixture = new Fixture();
-        var inputDirectoryName = fixture.Create<string>();
-        var inputDirPath = Path.Combine(Path.GetTempPath(), inputDirectoryName);
-        const string outputFileName = "final.pdf";
+        var inputDirPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(inputDirPath);
+        const string outputName = "final";
+        var outputPdfPath = Path.Combine(inputDirPath, outputName + ".pdf");
 
-        // Create dummy image files
-        var imagePaths = new[]
+        try
         {
-            Path.Combine(inputDirPath, "image1.png"),
-            Path.Combine(inputDirPath, "image2.jpg"),
-            Path.Combine(inputDirPath, "image3.bmp")
-        };
+            foreach (var (name, color) in new[] { ("a.png", MagickColors.Red), ("b.jpg", MagickColors.Blue), ("c.bmp", MagickColors.Green) })
+            {
+                using var image = new MagickImage(color, 100, 100);
+                image.Write(Path.Combine(inputDirPath, name));
+            }
 
-        foreach (var imagePath in imagePaths)
-        {
-            using var image = new MagickImage(MagickColors.Red, 100, 100);
-            image.Write(imagePath);
+            var result = CliTestHelper.Run("dir", "--path", inputDirPath, "--output", outputName);
+
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(outputPdfPath).Should().BeTrue();
         }
-
-        // Act
-        DirToPdf.ConvertDirectoryToOnePdf(inputDirPath, outputFileName);
-
-        // Assert
-        // Check if there is any pdf file created
-        var outputPdfPath = Directory.GetFiles(inputDirPath, "*.pdf").FirstOrDefault();
-        File.Exists(outputPdfPath).Should().BeTrue();
-
-        // Check if there is a specif pdf with that name
-        var output = Path.Combine(Path.GetTempPath(), $"{inputDirectoryName}/{outputFileName}");
-        File.Exists(output).Should().BeTrue();
-
-        // Clean up
-        Directory.Delete(inputDirPath, true);
+        finally
+        {
+            if (Directory.Exists(inputDirPath)) Directory.Delete(inputDirPath, true);
+        }
     }
 
     [Fact]
-    public void ConvertDirectoryToOnePdf_ShouldNotCreatePdf_WhenImageExceedsLimits()
+    public void ShouldNotCreatePdf_WhenImageExceedsLimits()
     {
-        // End-to-end smoke: dir command must not write a PDF when LoadValidatedImage rejects input.
         var inputDirPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        const string outputFileName = "final.pdf";
-        var outputPath = Path.Combine(inputDirPath, outputFileName);
         Directory.CreateDirectory(inputDirPath);
-
-        var oversizedImagePath = Path.Combine(inputDirPath, "oversized.png");
+        const string outputName = "final";
+        var outputPdfPath = Path.Combine(inputDirPath, outputName + ".pdf");
 
         try
         {
             using (var image = new MagickImage(MagickColors.Red, 10_001, 100))
-            {
-                image.Write(oversizedImagePath);
-            }
+                image.Write(Path.Combine(inputDirPath, "oversized.png"));
 
-            DirToPdf.ConvertDirectoryToOnePdf(inputDirPath, outputFileName);
+            var result = CliTestHelper.Run("dir", "--path", inputDirPath, "--output", outputName);
 
-            File.Exists(outputPath).Should().BeFalse();
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(outputPdfPath).Should().BeFalse();
         }
         finally
         {
-            if (Directory.Exists(inputDirPath))
-            {
-                Directory.Delete(inputDirPath, true);
-            }
+            if (Directory.Exists(inputDirPath)) Directory.Delete(inputDirPath, true);
         }
     }
 }
