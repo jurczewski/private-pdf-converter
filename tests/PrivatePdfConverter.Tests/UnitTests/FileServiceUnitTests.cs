@@ -58,6 +58,20 @@ public sealed class FileServiceUnitTests
     }
 
     [Fact]
+    public void PrepareOutputFileName_WithNullOutput_ShouldDeriveFromSourcePath_WhenPathHasTrailingSlash()
+    {
+        // Arrange
+        string? output = null;
+        var sourcePath = Path.Combine("images", "my-photos") + Path.DirectorySeparatorChar;
+
+        // Act
+        var result = output.PrepareOutputFileName(sourcePath);
+
+        // Assert
+        result.Should().Be("my-photos.pdf");
+    }
+
+    [Fact]
     public void PrepareOutputFileName_WithNullOutput_ShouldAppendExportSuffix_WhenSourceIsPdf()
     {
         // Arrange

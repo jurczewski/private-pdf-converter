@@ -78,7 +78,8 @@ public static class FileService
                 : output + ".pdf";
         }
 
-        var sourceFileName = Path.GetFileNameWithoutExtension(sourcePath);
+        var normalizedSource = sourcePath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        var sourceFileName = Path.GetFileNameWithoutExtension(normalizedSource);
         var baseName = string.IsNullOrEmpty(sourceFileName) ? "output" : sourceFileName;
         var derived = baseName + ".pdf";
 
