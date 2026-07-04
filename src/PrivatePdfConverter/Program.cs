@@ -22,4 +22,5 @@ static void RegisterCommands(ConsoleApp.ConsoleAppBuilder app)
     app.Add("img", ImgToPdf.ConvertImageToOnePdf);
     app.Add("encrypt", EncryptPdf.EncryptPdfWithPassword);
     app.Add("logo", AddLogoToPdf.Run);
+    app.Add("split", SplitPdf.Run);
 }
