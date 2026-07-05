@@ -1,4 +1,5 @@
 using iText.Kernel.Pdf;
+using PrivatePdfConverter.Services;
 using Serilog;
 
 namespace PrivatePdfConverter.Commands;
@@ -10,7 +11,7 @@ public static class SplitPdf
     /// </summary>
     /// <param name="path">Path to the source PDF file.</param>
     /// <param name="pages">Page specification: "all", ranges like "1-5,10-15", or individual pages like "1,3,5".</param>
-    /// <param name="output">Optional output file name prefix (without extension).</param>
+    /// <param name="output">Optional output file name prefix. A trailing ".pdf" is handled automatically.</param>
     public static void Run(string path, string pages, string? output = null)
     {
         if (!File.Exists(path))
@@ -38,11 +39,11 @@ public static class SplitPdf
         var outputDir = Path.GetDirectoryName(path) ?? string.Empty;
         var outputPrefix = string.IsNullOrEmpty(output)
             ? Path.GetFileNameWithoutExtension(path) + "_pages"
-            : output;
+            : Path.GetFileNameWithoutExtension(output.PrepareOutputFileName(path));
 
         foreach (var (start, end, label) in ranges)
         {
-            var outputFileName = $"{outputPrefix}_{label}.pdf";
+            var outputFileName = $"{outputPrefix}_{label}".PrepareOutputFileName(path);
             var outputPath = Path.Combine(outputDir, outputFileName);
 
             using var destPdf = new PdfDocument(new PdfWriter(outputPath));

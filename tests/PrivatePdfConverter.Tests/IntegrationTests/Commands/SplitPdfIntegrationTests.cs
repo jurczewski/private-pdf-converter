@@ -1,4 +1,4 @@
-using iText.Kernel.Pdf;
+﻿using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 
@@ -126,6 +126,28 @@ public sealed class SplitPdfIntegrationTests
 
             result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
             File.Exists(Path.Combine(inputDirPath, "input_pages_1-2.pdf")).Should().BeTrue();
+        }
+        finally
+        {
+            Cleanup(inputDirPath);
+        }
+    }
+
+    [Fact]
+    public void ShouldNormalizeOutput_WhenOutputEndsWithPdfExtension()
+    {
+        var inputDirPath = CreateTempDir();
+        var inputPdfPath = Path.Combine(inputDirPath, "input.pdf");
+
+        try
+        {
+            CreateSamplePdf(inputPdfPath, 5);
+
+            var result = CliTestHelper.Run("split", "--path", inputPdfPath, "--pages", "1-2", "--output", "part.pdf");
+
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(Path.Combine(inputDirPath, "part_1-2.pdf")).Should().BeTrue();
+            File.Exists(Path.Combine(inputDirPath, "part.pdf_1-2.pdf")).Should().BeFalse();
         }
         finally
         {
