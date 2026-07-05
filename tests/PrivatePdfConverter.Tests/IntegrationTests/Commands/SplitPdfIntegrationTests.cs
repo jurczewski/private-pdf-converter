@@ -156,6 +156,27 @@ public sealed class SplitPdfIntegrationTests
     }
 
     [Fact]
+    public void ShouldNormalizeLabel_WhenPagesContainWhitespace()
+    {
+        var inputDirPath = CreateTempDir();
+        var inputPdfPath = Path.Combine(inputDirPath, "input.pdf");
+
+        try
+        {
+            CreateSamplePdf(inputPdfPath, 5);
+
+            var result = CliTestHelper.Run("split", "--path", inputPdfPath, "--pages", "1 - 3", "--output", "part");
+
+            result.ExitCode.Should().Be(0, $"stderr: {result.StandardError}\nstdout: {result.StandardOutput}");
+            File.Exists(Path.Combine(inputDirPath, "part_1-3.pdf")).Should().BeTrue();
+        }
+        finally
+        {
+            Cleanup(inputDirPath);
+        }
+    }
+
+    [Fact]
     public void ShouldNotCreateOutput_WhenRangeExceedsPageCount()
     {
         var inputDirPath = CreateTempDir();
