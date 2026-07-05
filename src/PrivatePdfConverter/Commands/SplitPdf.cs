@@ -1,4 +1,4 @@
-using iText.Kernel.Pdf;
+﻿using iText.Kernel.Pdf;
 using PrivatePdfConverter.Services;
 using Serilog;
 
@@ -100,7 +100,7 @@ public static class SplitPdf
                     return null;
                 }
 
-                result.Add((start, end, part));
+                result.Add((start, end, $"{start}-{end}"));
             }
             else
             {

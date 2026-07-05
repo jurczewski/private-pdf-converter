@@ -46,11 +46,11 @@ public sealed class SplitPdfUnitTests
     }
 
     [Fact]
-    public void ParsePageRanges_ShouldIgnoreWhitespace()
+    public void ParsePageRanges_ShouldIgnoreWhitespace_AndNormalizeLabels()
     {
         var result = SplitPdf.ParsePageRanges(" 1 - 3 , 5 ", totalPages: 10);
 
-        result.Should().Equal((1, 3, "1 - 3"), (5, 5, "5"));
+        result.Should().Equal((1, 3, "1-3"), (5, 5, "5"));
     }
 
     [Theory]
