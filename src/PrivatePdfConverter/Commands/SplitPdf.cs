@@ -39,7 +39,7 @@ public static class SplitPdf
         var outputDir = Path.GetDirectoryName(path) ?? string.Empty;
         var outputPrefix = string.IsNullOrEmpty(output)
             ? Path.GetFileNameWithoutExtension(path) + "_pages"
-            : Path.GetFileNameWithoutExtension(output.PrepareOutputFileName(path));
+            : output.PrepareOutputBaseName(path);
 
         foreach (var (start, end, label) in ranges)
         {

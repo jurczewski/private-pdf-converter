@@ -113,6 +113,20 @@ public sealed class FileServiceUnitTests
         result.Should().Be("file.pdf");
     }
 
+    [Theory]
+    [InlineData("part", "input.pdf", "part")]
+    [InlineData("part.pdf", "input.pdf", "part")]
+    [InlineData("part.PDF", "input.pdf", "part")]
+    [InlineData(null, "photo.jpg", "photo")]
+    [InlineData("", "photo.jpg", "photo")]
+    [InlineData(null, "report.pdf", "report_export")]
+    public void PrepareOutputBaseName_ShouldReturnNameWithoutExtension(string? output, string sourcePath, string expected)
+    {
+        var result = output.PrepareOutputBaseName(sourcePath);
+
+        result.Should().Be(expected);
+    }
+
     [Fact]
     public void LoadValidatedImage_ShouldReturnImage_WhenWithinLimits()
     {

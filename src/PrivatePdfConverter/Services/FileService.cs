@@ -59,33 +59,37 @@ public static class FileService
     }
 
     /// <summary>
-    /// Prepares the output file name based on the provided output or source path.
-    /// If <paramref name="output"/> is provided, use it (and ensure .pdf extension).
-    /// If not provided, derive the name from the <paramref name="sourcePath"/> filename.
-    /// When the derived name would equal the source file (e.g. source is already a PDF),
-    /// appends "_export" to avoid overwriting the input file.
+    /// Prepares the output file name (with the .pdf extension) based on the provided output
+    /// or source path. See <see cref="PrepareOutputBaseName"/> for the naming rules.
     /// Examples: "C:\\images\\photo.jpg" -> "photo.pdf", "report.pdf" -> "report_export.pdf"
     /// </summary>
-    /// <param name="output">The desired output file name.</param>
-    /// <param name="sourcePath">The path of the source file.</param>
-    /// <returns>The prepared output file name.</returns>
     public static string PrepareOutputFileName(this string? output, string sourcePath)
+        => output.PrepareOutputBaseName(sourcePath) + ".pdf";
+
+    /// <summary>
+    /// Prepares the output base name (without the .pdf extension) based on the provided
+    /// output or source path. This is the shared building block behind
+    /// <see cref="PrepareOutputFileName"/>; use it when the caller needs to append its own
+    /// suffix (e.g. a page range) before adding the extension.
+    /// Examples: "report.pdf" -> "report", "C:\\images\\photo.jpg" -> "photo",
+    /// null with source "report.pdf" -> "report_export".
+    /// </summary>
+    public static string PrepareOutputBaseName(this string? output, string sourcePath)
     {
         if (!string.IsNullOrEmpty(output))
         {
             return output.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
-                ? output
-                : output + ".pdf";
+                ? Path.GetFileNameWithoutExtension(output)
+                : output;
         }
 
         var normalizedSource = sourcePath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
         var sourceFileName = Path.GetFileNameWithoutExtension(normalizedSource);
         var baseName = string.IsNullOrEmpty(sourceFileName) ? "output" : sourceFileName;
-        var derived = baseName + ".pdf";
 
         // prevent read+write on the same file when source is already a PDF
-        return string.Equals(derived, Path.GetFileName(sourcePath), StringComparison.OrdinalIgnoreCase)
-            ? baseName + "_export.pdf"
-            : derived;
+        return string.Equals(baseName + ".pdf", Path.GetFileName(sourcePath), StringComparison.OrdinalIgnoreCase)
+            ? baseName + "_export"
+            : baseName;
     }
 }
