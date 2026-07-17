@@ -25,24 +25,24 @@ public static class TuiApp
         using Window window = new();
         window.Title = "Private PDF Converter (Esc to quit)";
 
-        AddMenuButton(window, app, "Convert directory of images to PDF", 1, () => RunDirToPdf(app));
-        AddMenuButton(window, app, "Merge PDFs in a directory", 3, () => RunMergePdf(app));
-        AddMenuButton(window, app, "Convert a single image to PDF", 5, () => RunImgToPdf(app));
-        AddMenuButton(window, app, "Encrypt a PDF with a password", 7, () => RunEncryptPdf(app));
-        AddMenuButton(window, app, "Add a logo/watermark to a PDF", 9, () => RunAddLogo(app));
-        AddMenuButton(window, app, "List supported image extensions", 11, () => RunListExtensions(app));
-        AddMenuButton(window, app, "Quit", 13, app.RequestStop);
+        AddMenuButton(window, "Convert directory of images to PDF", 1, () => RunDirToPdf(app));
+        AddMenuButton(window, "Merge PDFs in a directory", 3, () => RunMergePdf(app));
+        AddMenuButton(window, "Convert a single image to PDF", 5, () => RunImgToPdf(app));
+        AddMenuButton(window, "Encrypt a PDF with a password", 7, () => RunEncryptPdf(app));
+        AddMenuButton(window, "Add a logo/watermark to a PDF", 9, () => RunAddLogo(app));
+        AddMenuButton(window, "List supported image extensions", 11, () => RunListExtensions(app));
+        AddMenuButton(window, "Quit", 13, app.RequestStop);
 
         app.Run(window);
     }
 
-    private static void AddMenuButton(Window window, IApplication app, string text, int y, Action action)
+    private static void AddMenuButton(Window window, string text, int y, Action action)
     {
         var button = new Button
         {
             X = Pos.Center(),
             Y = y,
-            Text = text,
+            Text = text
         };
         button.Accepted += (_, _) => action();
         window.Add(button);
@@ -60,7 +60,7 @@ public static class TuiApp
             return;
         }
 
-        var path = pathField.Text ?? string.Empty;
+        var path = pathField.Text;
         var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path))
@@ -84,7 +84,7 @@ public static class TuiApp
             return;
         }
 
-        var path = pathField.Text ?? string.Empty;
+        var path = pathField.Text;
         var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path))
@@ -108,7 +108,7 @@ public static class TuiApp
             return;
         }
 
-        var path = pathField.Text ?? string.Empty;
+        var path = pathField.Text;
         var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path))
@@ -133,8 +133,8 @@ public static class TuiApp
             return;
         }
 
-        var path = pathField.Text ?? string.Empty;
-        var password = passwordField.Text ?? string.Empty;
+        var path = pathField.Text;
+        var password = passwordField.Text;
         var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(password))
@@ -162,8 +162,8 @@ public static class TuiApp
             return;
         }
 
-        var path = pathField.Text ?? string.Empty;
-        var logoPath = logoPathField.Text ?? string.Empty;
+        var path = pathField.Text;
+        var logoPath = logoPathField.Text;
         var position = logoPositionValues[positionSelector.Value ?? 3];
         var scale = scaleToggle.Value == CheckState.Checked ? scaleUpDown.Value : (int?) null;
         var opacity = opacityToggle.Value == CheckState.Checked ? opacityUpDown.Value : (int?) null;
@@ -254,7 +254,7 @@ public static class TuiApp
     /// Returns <see langword="true"/> if the user confirmed with OK, or <see langword="false"/> if canceled.
     /// </summary>
     /// <remarks>
-    /// The dialog's height is auto-computed from its content (<see cref="Dim.Auto()"/>) rather than a
+    /// The dialog's height is auto-computed from its content (<see cref="Dim.Auto(DimAutoStyle,Dim,Dim)"/>) rather than a
     /// hardcoded row count, so every field added via the AddXField helpers is guaranteed to be visible -
     /// a fixed "rows + N" formula previously clipped the last field(s) out of view.
     /// </remarks>
