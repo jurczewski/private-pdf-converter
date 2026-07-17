@@ -1,4 +1,4 @@
-using PrivatePdfConverter.Commands;
+﻿using PrivatePdfConverter.Commands;
 using Terminal.Gui.App;
 using Terminal.Gui.ViewBase;
 using Terminal.Gui.Views;
