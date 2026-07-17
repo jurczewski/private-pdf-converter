@@ -11,6 +11,9 @@ namespace PrivatePdfConverter.Tui;
 /// </summary>
 public static class TuiApp
 {
+    private static readonly string[] logoPositionLabels = ["Top-left", "Top-right", "Bottom-left", "Bottom-right"];
+    private static readonly string[] logoPositionValues = ["top-left", "top-right", "bottom-left", "bottom-right"];
+
     /// <summary>
     /// Launches the interactive text-based user interface.
     /// </summary>
@@ -46,19 +49,18 @@ public static class TuiApp
 
     private static void RunDirToPdf(IApplication app)
     {
-        var values = PromptForFields(
-            app,
-            "Convert directory of images to PDF",
-            ("Directory path:", false, ""),
-            ("Output file name (optional):", false, ""));
+        using var dialog = CreateDialog(app, "Convert directory of images to PDF");
+        var y = 0;
+        var pathField = AddRequiredTextField(dialog, ref y, "Directory path:");
+        var (outputToggle, outputField) = AddOptionalTextField(dialog, ref y, "Output file name (optional):");
 
-        if (values is null)
+        if (!ShowDialog(app, dialog, y, pathField))
         {
             return;
         }
 
-        var path = values[0];
-        var output = string.IsNullOrWhiteSpace(values[1]) ? null : values[1];
+        var path = pathField.Text ?? string.Empty;
+        var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path))
         {
@@ -71,19 +73,18 @@ public static class TuiApp
 
     private static void RunMergePdf(IApplication app)
     {
-        var values = PromptForFields(
-            app,
-            "Merge PDFs in a directory",
-            ("Directory path:", false, ""),
-            ("Output file name (optional):", false, ""));
+        using var dialog = CreateDialog(app, "Merge PDFs in a directory");
+        var y = 0;
+        var pathField = AddRequiredTextField(dialog, ref y, "Directory path:");
+        var (outputToggle, outputField) = AddOptionalTextField(dialog, ref y, "Output file name (optional):");
 
-        if (values is null)
+        if (!ShowDialog(app, dialog, y, pathField))
         {
             return;
         }
 
-        var path = values[0];
-        var output = string.IsNullOrWhiteSpace(values[1]) ? null : values[1];
+        var path = pathField.Text ?? string.Empty;
+        var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path))
         {
@@ -96,19 +97,18 @@ public static class TuiApp
 
     private static void RunImgToPdf(IApplication app)
     {
-        var values = PromptForFields(
-            app,
-            "Convert a single image to PDF",
-            ("Image path:", false, ""),
-            ("Output file name (optional):", false, ""));
+        using var dialog = CreateDialog(app, "Convert a single image to PDF");
+        var y = 0;
+        var pathField = AddRequiredTextField(dialog, ref y, "Image path:");
+        var (outputToggle, outputField) = AddOptionalTextField(dialog, ref y, "Output file name (optional):");
 
-        if (values is null)
+        if (!ShowDialog(app, dialog, y, pathField))
         {
             return;
         }
 
-        var path = values[0];
-        var output = string.IsNullOrWhiteSpace(values[1]) ? null : values[1];
+        var path = pathField.Text ?? string.Empty;
+        var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path))
         {
@@ -121,21 +121,20 @@ public static class TuiApp
 
     private static void RunEncryptPdf(IApplication app)
     {
-        var values = PromptForFields(
-            app,
-            "Encrypt a PDF with a password",
-            ("PDF path:", false, ""),
-            ("Password:", true, ""),
-            ("Output file name (optional):", false, ""));
+        using var dialog = CreateDialog(app, "Encrypt a PDF with a password");
+        var y = 0;
+        var pathField = AddRequiredTextField(dialog, ref y, "PDF path:");
+        var passwordField = AddRequiredTextField(dialog, ref y, "Password:", secret: true);
+        var (outputToggle, outputField) = AddOptionalTextField(dialog, ref y, "Output file name (optional):");
 
-        if (values is null)
+        if (!ShowDialog(app, dialog, y, pathField))
         {
             return;
         }
 
-        var path = values[0];
-        var password = values[1];
-        var output = string.IsNullOrWhiteSpace(values[2]) ? null : values[2];
+        var path = pathField.Text ?? string.Empty;
+        var password = passwordField.Text ?? string.Empty;
+        var output = GetOptionalText(outputToggle, outputField);
 
         if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(password))
         {
@@ -148,31 +147,30 @@ public static class TuiApp
 
     private static void RunAddLogo(IApplication app)
     {
-        var values = PromptForFields(
-            app,
-            "Add a logo/watermark to a PDF",
-            ("PDF path:", false, ""),
-            ("Logo image path:", false, ""),
-            ("Position (top-left, top-right, bottom-left, bottom-right):", false, "bottom-right"),
-            ("Scale % (optional):", false, ""),
-            ("Opacity % (optional):", false, ""),
-            ("Output file name (optional):", false, ""));
+        using var dialog = CreateDialog(app, "Add a logo/watermark to a PDF");
+        var y = 0;
+        var pathField = AddRequiredTextField(dialog, ref y, "PDF path:");
+        var logoPathField = AddRequiredTextField(dialog, ref y, "Logo image path:");
+        var positionSelector = AddPositionField(dialog, ref y, "Position:", logoPositionLabels, defaultIndex: 3);
+        var (scaleToggle, scaleUpDown) = AddOptionalIntField(dialog, ref y, "Scale % (optional):");
+        var (opacityToggle, opacityUpDown) = AddOptionalIntField(dialog, ref y, "Opacity % (optional):");
+        var (outputToggle, outputField) = AddOptionalTextField(dialog, ref y, "Output file name (optional):");
 
-        if (values is null)
+        if (!ShowDialog(app, dialog, y, pathField))
         {
             return;
         }
 
-        var path = values[0];
-        var logoPath = values[1];
-        var position = values[2];
-        var scale = ParseOptionalInt(values[3]);
-        var opacity = ParseOptionalInt(values[4]);
-        var output = string.IsNullOrWhiteSpace(values[5]) ? null : values[5];
+        var path = pathField.Text ?? string.Empty;
+        var logoPath = logoPathField.Text ?? string.Empty;
+        var position = logoPositionValues[positionSelector.Value ?? 3];
+        var scale = scaleToggle.Value == CheckState.Checked ? scaleUpDown.Value : (int?) null;
+        var opacity = opacityToggle.Value == CheckState.Checked ? opacityUpDown.Value : (int?) null;
+        var output = GetOptionalText(outputToggle, outputField);
 
-        if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(logoPath) || string.IsNullOrWhiteSpace(position))
+        if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(logoPath))
         {
-            MessageBox.ErrorQuery(app, "Missing input", "A PDF path, logo path, and position are required.", "OK");
+            MessageBox.ErrorQuery(app, "Missing input", "A PDF path and logo path are required.", "OK");
             return;
         }
 
@@ -182,53 +180,94 @@ public static class TuiApp
     private static void RunListExtensions(IApplication app)
         => ExecuteAndShowResult(app, "Supported image extensions", ListValidExt.ListValidExtensions);
 
-    private static int? ParseOptionalInt(string value)
-        => int.TryParse(value, out var result) ? result : null;
+    private static string? GetOptionalText(CheckBox toggle, TextField field)
+        => toggle.Value == CheckState.Checked && !string.IsNullOrWhiteSpace(field.Text) ? field.Text : null;
 
     /// <summary>
-    /// Shows a modal dialog with one text field per requested field and OK/Cancel buttons.
-    /// Returns the entered values in order, or <see langword="null"/> if the user cancelled.
+    /// Creates an empty modal dialog ready to receive fields via the various AddXField helpers.
+    /// Call <see cref="ShowDialog"/> once all fields have been added to finalize its size and run it.
     /// </summary>
-    private static string[]? PromptForFields(IApplication app, string title, params (string Label, bool Secret, string Default)[] fields)
+    private static Dialog CreateDialog(IApplication app, string title)
     {
-        using Dialog dialog = new()
-        {
-            Title = title,
-            Width = Dim.Percent(80),
-            Height = fields.Length * 2 + 4,
-        };
+        Dialog dialog = new() { Title = title, Width = Dim.Percent(80) };
         dialog.App = app;
+        return dialog;
+    }
 
-        var textFields = new TextField[fields.Length];
-        for (var i = 0; i < fields.Length; i++)
-        {
-            var (label, secret, defaultValue) = fields[i];
-            var fieldLabel = new Label { X = 1, Y = i * 2, Text = label };
-            var textField = new TextField
-            {
-                X = 1,
-                Y = (i * 2) + 1,
-                Width = Dim.Fill(1),
-                Secret = secret,
-                Text = defaultValue,
-            };
-            textFields[i] = textField;
-            dialog.Add(fieldLabel, textField);
-        }
+    /// <summary>
+    /// Adds a required single-line text field (optionally masked) with a label above it.
+    /// </summary>
+    private static TextField AddRequiredTextField(Dialog dialog, ref int y, string label, bool secret = false)
+    {
+        dialog.Add(new Label { X = 1, Y = y, Text = label });
+        var field = new TextField { X = 1, Y = y + 1, Width = Dim.Fill(1), Secret = secret };
+        dialog.Add(field);
+        y += 2;
+        return field;
+    }
 
+    /// <summary>
+    /// Adds an optional text field guarded by a checkbox: the field stays disabled until the checkbox
+    /// is checked, making it obvious that leaving it unchecked falls back to the command's default behavior.
+    /// </summary>
+    private static (CheckBox Toggle, TextField Field) AddOptionalTextField(Dialog dialog, ref int y, string label)
+    {
+        dialog.Add(new Label { X = 1, Y = y, Text = label });
+        var toggle = new CheckBox { X = 1, Y = y + 1, Text = "Custom:" };
+        var field = new TextField { X = Pos.Right(toggle) + 1, Y = y + 1, Width = Dim.Fill(1), Enabled = false };
+        toggle.ValueChanged += (_, _) => field.Enabled = toggle.Value == CheckState.Checked;
+        dialog.Add(toggle, field);
+        y += 2;
+        return (toggle, field);
+    }
+
+    /// <summary>
+    /// Adds an optional numeric up/down field guarded by a checkbox, for optional integer parameters
+    /// such as scale or opacity percentages.
+    /// </summary>
+    private static (CheckBox Toggle, NumericUpDown<int> UpDown) AddOptionalIntField(Dialog dialog, ref int y, string label)
+    {
+        dialog.Add(new Label { X = 1, Y = y, Text = label });
+        var toggle = new CheckBox { X = 1, Y = y + 1, Text = "Set:" };
+        var upDown = new NumericUpDown<int> { X = Pos.Right(toggle) + 1, Y = y + 1, Increment = 5, Enabled = false };
+        toggle.ValueChanged += (_, _) => upDown.Enabled = toggle.Value == CheckState.Checked;
+        dialog.Add(toggle, upDown);
+        y += 2;
+        return (toggle, upDown);
+    }
+
+    /// <summary>
+    /// Adds a single-choice picker (radio-style option selector) for a fixed set of labeled choices.
+    /// </summary>
+    private static OptionSelector AddPositionField(Dialog dialog, ref int y, string label, string[] labels, int defaultIndex)
+    {
+        dialog.Add(new Label { X = 1, Y = y, Text = label });
+        var selector = new OptionSelector { X = 1, Y = y + 1, Labels = labels, Value = defaultIndex };
+        dialog.Add(selector);
+        y += 1 + labels.Length;
+        return selector;
+    }
+
+    /// <summary>
+    /// Finalizes the dialog's size, adds OK/Cancel buttons, focuses the given field and runs it modally.
+    /// Returns <see langword="true"/> if the user confirmed with OK, or <see langword="false"/> if canceled.
+    /// </summary>
+    /// <remarks>
+    /// The dialog's height is auto-computed from its content (<see cref="Dim.Auto()"/>) rather than a
+    /// hardcoded row count, so every field added via the AddXField helpers is guaranteed to be visible -
+    /// a fixed "rows + N" formula previously clipped the last field(s) out of view.
+    /// </remarks>
+    private static bool ShowDialog(IApplication app, Dialog dialog, int contentRows, View focusField)
+    {
+        _ = contentRows;
+        dialog.Height = Dim.Auto();
         dialog.AddButton(new Button { Text = "_Cancel" });
         dialog.AddButton(new Button { Text = "_OK", IsDefault = true });
 
-        textFields[0].SetFocus();
-
+        focusField.SetFocus();
         app.Run(dialog);
 
-        if (dialog.Canceled)
-        {
-            return null;
-        }
-
-        return textFields.Select(t => t.Text ?? string.Empty).ToArray();
+        return !dialog.Canceled;
     }
 
     /// <summary>
