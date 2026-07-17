@@ -3,6 +3,7 @@ using Serilog;
 using Terminal.Gui.App;
 using Terminal.Gui.ViewBase;
 using Terminal.Gui.Views;
+// ReSharper disable AccessToDisposedClosure
 
 namespace PrivatePdfConverter.Tui;
 
