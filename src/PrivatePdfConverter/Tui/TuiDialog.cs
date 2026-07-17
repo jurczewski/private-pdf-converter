@@ -1,4 +1,4 @@
-using Serilog;
+﻿using Serilog;
 using Terminal.Gui.App;
 using Terminal.Gui.ViewBase;
 using Terminal.Gui.Views;
@@ -14,8 +14,12 @@ public static partial class TuiApp
     /// </summary>
     private static Dialog CreateDialog(IApplication app, string title)
     {
-        Dialog dialog = new() { Title = title, Width = Dim.Percent(80) };
-        dialog.App = app;
+        Dialog dialog = new()
+        {
+            Title = title,
+            Width = Dim.Percent(80),
+            App = app
+        };
         return dialog;
     }
 
