@@ -19,10 +19,11 @@ public static class TuiApp
     /// </summary>
     public static void Run()
     {
-        using IApplication app = Application.Create();
+        using var app = Application.Create();
         app.Init();
 
-        using Window window = new() { Title = "Private PDF Converter (Esc to quit)" };
+        using Window window = new();
+        window.Title = "Private PDF Converter (Esc to quit)";
 
         AddMenuButton(window, app, "Convert directory of images to PDF", 1, () => RunDirToPdf(app));
         AddMenuButton(window, app, "Merge PDFs in a directory", 3, () => RunMergePdf(app));
