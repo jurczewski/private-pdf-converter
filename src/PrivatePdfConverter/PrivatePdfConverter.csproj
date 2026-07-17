@@ -39,6 +39,14 @@
         <PackageReference Include="Serilog.Sinks.Console" />
     </ItemGroup>
 
+    <!-- Terminal.Gui (used by the interactive TUI) only ships a net10.0 target. -->
+    <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+        <PackageReference Include="Terminal.Gui" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)' != 'net10.0'">
+        <Compile Remove="Tui\**\*.cs" />
+    </ItemGroup>
+
     <ItemGroup>
         <None Include=".\..\..\README.md"        Pack="true" PackagePath="\" Visible="false" />
         <None Include=".\..\..\CHANGELOG.md"     Pack="true" PackagePath="\" Visible="false" />

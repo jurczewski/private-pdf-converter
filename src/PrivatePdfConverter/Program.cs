@@ -2,6 +2,9 @@
 using ConsoleAppFramework;
 using PrivatePdfConverter;
 using PrivatePdfConverter.Commands;
+#if NET10_0
+using PrivatePdfConverter.Tui;
+#endif
 
 var versionString = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
 
@@ -22,4 +25,7 @@ static void RegisterCommands(ConsoleApp.ConsoleAppBuilder app)
     app.Add("img", ImgToPdf.ConvertImageToOnePdf);
     app.Add("encrypt", EncryptPdf.EncryptPdfWithPassword);
     app.Add("logo", AddLogoToPdf.Run);
+#if NET10_0
+    app.Add("tui", TuiApp.Run);
+#endif
 }
