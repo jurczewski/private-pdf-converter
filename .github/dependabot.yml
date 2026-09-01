@@ -8,6 +8,10 @@ updates:
       time: "08:00"
       timezone: "Europe/Warsaw"
     open-pull-requests-limit: 1
+    ignore:
+      # xunit.v3 4.x pulls Microsoft.Testing.Platform 2.x, which breaks dotnet test on the .NET 10 SDK.
+      - dependency-name: "xunit.v3"
+        update-types: ["version-update:semver-major"]
     groups:
       nuget-all:
         patterns:
