@@ -93,7 +93,7 @@ public static class AddLogoToPdf
         float x, y; // left, bottom
         var (logoWidth, logoHeight) = (logo.GetImageScaledWidth(), logo.GetImageScaledHeight());
 
-        switch (position.ToLower())
+        switch (position.ToLowerInvariant())
         {
             case "top-left":
                 x = 0;

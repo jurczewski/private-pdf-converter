@@ -17,7 +17,7 @@ public static class FileService
     ];
 
     public static bool IsImage(this string? extension)
-        => !string.IsNullOrEmpty(extension) && ValidExtensions.Contains(extension.ToLower()[1..]);
+        => !string.IsNullOrEmpty(extension) && ValidExtensions.Contains(extension.ToLowerInvariant()[1..]);
 
     public static MagickImage? LoadValidatedImage(string path)
     {
